@@ -1,0 +1,303 @@
+[
+  {
+    "topic_id": 161071,
+    "post_id": 575209,
+    "author": "21f3000745",
+    "created_at": "2025-01-01T16:04:48.996Z",
+    "content": "<p>Hii all…i know this may not be the correct platform to ask this question.<br>\nActually i have 3 diploma subjects to cover - MLP, JAVA, TDS. So which 2 subject should i choose for this term?</p>"
+  },
+  {
+    "topic_id": 161071,
+    "post_id": 575247,
+    "author": "22f3002293",
+    "created_at": "2025-01-01T16:49:57.552Z",
+    "content": "<p>Don’t take TDS, this subject should be taken in the end else you might have some problem</p>"
+  },
+  {
+    "topic_id": 161071,
+    "post_id": 575349,
+    "author": "carlton",
+    "created_at": "2025-01-02T03:23:20.202Z",
+    "content": "<p>TDS at the end best. Gives you the best chance of doing well in it.</p>\n<p>Kind regards</p>"
+  },
+  {
+    "topic_id": 161071,
+    "post_id": 576005,
+    "author": "Adityach1",
+    "created_at": "2025-01-06T14:17:03.518Z",
+    "content": "<p>Yes you should do tds after mlp only it really help you alot trust me</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 579668,
+    "author": "s.anand",
+    "created_at": "2025-01-14T13:00:03.324Z",
+    "content": "<p>Please post any questions related to <a href=\"https://exam.sanand.workers.dev/tds-2025-01-ga3\">Graded Assignment 3 - Large Language Models</a>.</p>\n<hr>\n<h2><a name=\"p-579668-important-instruction-1\" class=\"anchor\" href=\"#p-579668-important-instruction-1\"></a>Important Instruction</h2>\n<p>Please use markdown code formatting (fenced code blocks) when sharing code in Discourse posts. This makes the code much easier to read and differentiate from non-code text. It also makes it easier for people to copy code snippets and run it themselves. See below code for example</p>\n<pre data-code-wrap=\"bash\"><code class=\"lang-bash\">ping exam.sanand.workers.dev\n\nPinging exam.sanand.workers.dev [104.21.31.149] with 32 bytes of data:\nReply from 104.21.31.149: bytes=32 time=9ms TTL=58\nReply from 104.21.31.149: bytes=32 time=8ms TTL=58\nReply from 104.21.31.149: bytes=32 time=8ms TTL=58\nReply from 104.21.31.149: bytes=32 time=9ms TTL=58\n\nPing statistics for 104.21.31.149:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = 8ms, Maximum = 9ms, Average = 8ms\n</code></pre>\n<p>Visit this link for more details: <a href=\"https://www.markdownguide.org/extended-syntax/#fenced-code-blocks\" class=\"inline-onebox\">Extended Syntax | Markdown Guide</a>.</p>\n<p>A friendly suggestion: kindly go through <a class=\"hashtag-cooked\" href=\"/c/docs-discourse/45\" data-type=\"category\" data-slug=\"docs-discourse\" data-id=\"45\"><span class=\"hashtag-icon-placeholder\"><svg class=\"fa d-icon d-icon-square-full svg-icon svg-node\"><use href=\"#square-full\"></use></svg></span><span>Discourse Docs</span></a>! <img src=\"https://emoji.discourse-cdn.com/google/slight_smile.png?v=12\" title=\":slight_smile:\" class=\"emoji\" alt=\":slight_smile:\" loading=\"lazy\" width=\"20\" height=\"20\"></p>\n<hr>\n<p>Deadline: <span class=\"discourse-local-date\" data-date=\"2025-02-02\" data-email-preview=\"2025-02-02T18:29:00Z UTC\" data-format=\"LLLL\" data-time=\"23:59:00\" data-timezone=\"Asia/Calcutta\">Sunday, February 2, 2025 6:29 PM</span></p>\n<p><a class=\"mention\" href=\"/u/carlton\">@carlton</a> <a class=\"mention\" href=\"/u/jivraj\">@Jivraj</a> <a class=\"mention\" href=\"/u/saransh_saini\">@Saransh_Saini</a></p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 579673,
+    "author": "s.anand",
+    "created_at": "2025-01-14T13:06:47.583Z",
+    "content": ""
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 580013,
+    "author": "nilaychugh",
+    "created_at": "2025-01-15T12:20:05.475Z",
+    "content": "<p>how to get the dummy API key?</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 580073,
+    "author": "Jivraj",
+    "created_at": "2025-01-15T14:59:06.607Z",
+    "content": "<p>Hi Nilay,</p>\n<p>In order to make a api call to openai chat completions you are required to send authentication information(openai key) in headers. For first question of GA3 you don’t have to send actual(working) api key, any dummy api key would work(you can put your name, or tds anything works)</p>\n<p>kind regards</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 581443,
+    "author": "nilaychugh",
+    "created_at": "2025-01-18T04:43:01.431Z",
+    "content": "<p>which API should i use in 7th question</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 581855,
+    "author": "22f3001315",
+    "created_at": "2025-01-19T07:36:55.428Z",
+    "content": "<p>need help in question 4th. how can i correct this json body? sir  <a class=\"mention\" href=\"/u/jivraj\">@Jivraj</a></p>\n<pre><code class=\"lang-auto\">{\n  \"model\": \"gpt-4o-mini\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Extract text from this image.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": {\n        \"image_url\": \"data:image/png;base64,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\"\n      }\n    }\n  ]\n}\n\n</code></pre>\n<p>error:The JSON body must have 1 message</p>\n<pre><code class=\"lang-auto\">{\n  \"model\": \"gpt-4o-mini\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": {\n        \"text\": \"Extract text from this image.\",\n        \"image_url\": \"data:image/png;base64,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\"\n      }\n    }\n  ]\n}\n\n</code></pre>\n<p>Error: The message must have a 2 content parts</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 582119,
+    "author": "22f3001315",
+    "created_at": "2025-01-19T16:53:34.970Z",
+    "content": "<p><a class=\"mention\" href=\"/u/jivraj\">@Jivraj</a> <a class=\"mention\" href=\"/u/carlton\">@carlton</a>  sir plz see it once.</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 582598,
+    "author": "Jivraj",
+    "created_at": "2025-01-21T07:02:52.278Z",
+    "content": "<p>Hi <a class=\"mention\" href=\"/u/22f3001315\">@22f3001315</a> ,</p>\n<p>You are almost correct, there are very minor changes that needs to be made.</p>\n<p>Take help from Chat GPT or use this documentation which have correct json body <a href=\"https://platform.openai.com/docs/guides/vision\" rel=\"noopener nofollow ugc\">Vision - OpenAI API</a>.</p>\n<p>Kind regards<br>\nJivraj</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 582639,
+    "author": "22f3001315",
+    "created_at": "2025-01-21T08:21:45.804Z",
+    "content": "<p>it worked thanks sir</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 582722,
+    "author": "22f3002034",
+    "created_at": "2025-01-21T11:25:57.882Z",
+    "content": "<p>Are we supposed to buy open ai api key ?</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 582744,
+    "author": "23f2000237",
+    "created_at": "2025-01-21T12:01:17.870Z",
+    "content": "<p>No, if you scroll down to the last question, we can get our Ai Proxy key</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 582749,
+    "author": "carlton",
+    "created_at": "2025-01-21T12:06:09.235Z",
+    "content": "<p><a class=\"mention\" href=\"/u/nilaychugh\">@nilaychugh</a> <a class=\"mention\" href=\"/u/22f3002034\">@22f3002034</a></p>\n<p>The API key is available at <a href=\"https://aiproxy.sanand.workers.dev/\" rel=\"noopener nofollow ugc\">https://aiproxy.sanand.workers.dev/</a></p>\n<p>The instructions on how to use the token is given at <a href=\"https://github.com/sanand0/aiproxy\" class=\"inline-onebox\" rel=\"noopener nofollow ugc\">GitHub - sanand0/aiproxy: Authorizing proxy for LLMs</a></p>\n<p>You cannot use this token directly with Open AI or any other gpt. These are only valid via the API exposed by the above instructions.</p>\n<p>You get a limit of $1. Use with care.</p>\n<p>Kind regards</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 582810,
+    "author": "nilaychugh",
+    "created_at": "2025-01-21T14:30:30.322Z",
+    "content": "<p>but the embedding model that is said to be used is text embedding 3 small, which is the model of OpenAI</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 583185,
+    "author": "Jivraj",
+    "created_at": "2025-01-22T09:13:43.408Z",
+    "content": "<p>Hi Nilay,</p>\n<p>Yes you would need to use <code>text-embedding-3-small</code> model of openai for embedding questions.</p>\n<p>Kind regards<br>\nJivraj</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 583854,
+    "author": "nilaychugh",
+    "created_at": "2025-01-23T03:52:39.679Z",
+    "content": "<p>i have a doubt, while submitting the GA3, both 7th and 8th questions require the API url to be active and connected right, but its not possible as both the URLs use same port, so if we check my 7th question URL is running right now, it’ll show as correct, but then if i  run 8th question URL, the 7th question will automatically show the error, <strong>is there any solution to this problem?</strong></p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 583913,
+    "author": "21f3002277",
+    "created_at": "2025-01-23T06:09:55.493Z",
+    "content": "<p>Q5.  How to handle the error ? sir <a class=\"mention\" href=\"/u/jivraj\">@Jivraj</a></p>\n<p>Error: The first input does not match the first text exactly</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 583919,
+    "author": "21f3002277",
+    "created_at": "2025-01-23T06:17:12.711Z",
+    "content": "<p>Q4. How to handle this error? <a class=\"mention\" href=\"/u/jivraj\">@Jivraj</a></p>\n<pre><code class=\"lang-auto\">{\n  \"id\": \"chatcmpl-AshDCPwSiXNao1QXmCxCmi63GifFx\",\n  \"object\": \"chat.completion\",\n  \"created\": 1737599182,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n  \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\": \"assistant\",\n        \"content\": \"The image contains an email address and a number. The email address appears to be associated with an educational institution, and the number seems to be a numerical sequence.\",\n        \"refusal\": null\n      },\n      \"logprobs\": null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 592,\n    \"completion_tokens\": 33,\n    \"total_tokens\": 625,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\": {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\": 0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\": \"default\",\n  \"system_fingerprint\": \"fp_bd83329f63\",\n  \"monthlyCost\": 0.05490624000000001,\n  \"cost\": 0.001974,\n  \"monthlyRequests\": 14,\n  \"costError\": \"crypto.createHash is not a function\"\n}\n</code></pre>\n<p>Error: Model must be gpt-4o-mini</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 584032,
+    "author": "Jivraj",
+    "created_at": "2025-01-23T10:58:14.611Z",
+    "content": "<p>Hi Nilay,</p>\n<aside class=\"quote group-ds-students\" data-username=\"nilaychugh\" data-post=\"17\" data-topic=\"163247\">\n<div class=\"title\">\n<div class=\"quote-controls\"></div>\n<img loading=\"lazy\" alt=\"\" width=\"24\" height=\"24\" src=\"https://dub1.discourse-cdn.com/flex013/user_avatar/discourse.onlinedegree.iitm.ac.in/nilaychugh/48/84996_2.png\" class=\"avatar\"> nilaychugh:</div>\n<blockquote>\n<p>both the URLs use same port,</p>\n</blockquote>\n</aside>\n<p>You can run two servers on different port numbers.</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 584038,
+    "author": "Jivraj",
+    "created_at": "2025-01-23T11:05:13.578Z",
+    "content": "<p>Hi Vikash,</p>\n<p>I looked at your answers in backend. In answer you submitted response from openai, but you need to submit json object which is required for sending a request to LLM.</p>\n<p>Kind regards</p>"
+  },
+  {
+    "topic_id": 163247,
+    "post_id": 584042,
+    "author": "Jivraj",
+    "created_at": "2025-01-23T11:07:22.861Z",
+    "content": "<p>You made same mistake here, instead of response use json body that’s required for sending request to LLM.</p>\n<p>Kind regards</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 590136,
+    "author": "23f3002530",
+    "created_at": "2025-02-03T06:54:27.787Z",
+    "content": "<p><a class=\"mention\" href=\"/u/carlton\">@carlton</a> <a class=\"mention\" href=\"/u/s.anand\">@s.anand</a><br>\ndear sir<br>\ni have taken tds in this term. after the first assignment there was no checkbox provided to any graded assignment .for this reason i just saved the assignment at the portal link .and now after the deadline its showing my assignment had not been submitted. pls do something please do it fast.</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 590232,
+    "author": "Saransh_Saini",
+    "created_at": "2025-02-03T10:42:34.471Z",
+    "content": "<aside class=\"quote\" data-post=\"171\" data-topic=\"161120\">\n  <div class=\"title\">\n    <div class=\"quote-controls\"></div>\n    <img alt=\"\" width=\"24\" height=\"24\" src=\"https://dub1.discourse-cdn.com/flex013/user_avatar/discourse.onlinedegree.iitm.ac.in/saransh_saini/48/123495_2.png\" class=\"avatar\">\n    <a href=\"https://discourse.onlinedegree.iitm.ac.in/t/ga2-deployment-tools-discussion-thread-tds-jan-2025/161120/171\">GA2 - Deployment Tools - Discussion Thread [TDS Jan 2025]</a> <a class=\"badge-category__wrapper \" href=\"/c/courses/tds-kb/34\"><span data-category-id=\"34\" style=\"--category-badge-color: #0088CC; --category-badge-text-color: #FFFFFF; --parent-category-badge-color: #3AB54A;\" data-parent-category-id=\"9\" data-drop-close=\"true\" class=\"badge-category --has-parent\" title=\"This category is created to address subject-specific queries related to Tools in Data Science\"><span class=\"badge-category__name\">Tools in Data Science</span></span></a>\n  </div>\n  <blockquote>\n    We have removed that button, cause it was causing confusion among the students. \nIf you have saved your answers on the TDS portal then you need not worry, you will be marked. The button was just there to ensure you saw the assignment on the TDS portal. \nRegards, \nTDS TA\n  </blockquote>\n</aside>\n\n<p>Read this</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 590930,
+    "author": "Rishabh2",
+    "created_at": "2025-02-05T17:17:25.350Z",
+    "content": "<p>I saved that too but right now scores of GA2 isn’t visible for me. And in score section it’s showing assignment not submitted. <a class=\"mention\" href=\"/u/saransh_saini\">@Saransh_Saini</a></p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591015,
+    "author": "carlton",
+    "created_at": "2025-02-06T02:24:28.000Z",
+    "content": "<p>Your scores are evaluated on a site that is external to the seek portal and is not integrated with the seek portal. Therefore seek does not know if you have submitted or not and by default says that it has not been submitted because it cannot see your external evaluation. There will not be a fix for this for some time.</p>\n<p>Scores for GA1, GA2, GA3, GA4, GA5, Project1, Project2, ROE will NOT be inside your seek portal.</p>\n<p><strong>The scores will only be visible in the dashboard.</strong> Just ignore anything inside seek portal. The dashboard is where all your subject score cards exists.</p>\n<p>As stated in multiple places on discourse as well as in live sessions, The final score is always your last submission. If your dashboard score does not match your final submission score on the assignment page, only then contact us regarding your marks.</p>\n<p>Kind regards</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591407,
+    "author": "23f3002530",
+    "created_at": "2025-02-03T05:35:17.285Z",
+    "content": "<p><a class=\"mention\" href=\"/u/jivraj\">@Jivraj</a> <a class=\"mention\" href=\"/u/iamprasna\">@iamprasna</a>  i have taken tds in this term. after the first assignment there was no checkbox provided to any graded assignment .for this reason i just saved the assignment at the portal link .and now after the deadline its showing my assignment  had not been submitted. pls do something please do it fast.</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591364,
+    "author": "shriaviator",
+    "created_at": "2025-02-07T02:08:32.080Z",
+    "content": "<p><a class=\"mention\" href=\"/u/23f3002530\">@23f3002530</a><br>\nTopic moved to the appropriate category in order to get faster responses.</p>\n<p><strong>Please make it easier for others to help you, by ensuring that topics are created in the correct categories.</strong></p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591405,
+    "author": "carlton",
+    "created_at": "2025-02-07T03:17:32.740Z",
+    "content": "<p><a class=\"mention\" href=\"/u/23f3002530\">@23f3002530</a></p>\n<p>Please refer to this post.</p>\n<aside class=\"quote quote-modified\" data-post=\"6\" data-topic=\"166189\">\n  <div class=\"title\">\n    <div class=\"quote-controls\"></div>\n    <img alt=\"\" width=\"24\" height=\"24\" src=\"https://dub1.discourse-cdn.com/flex013/user_avatar/discourse.onlinedegree.iitm.ac.in/carlton/48/56317_2.png\" class=\"avatar\">\n    <a href=\"https://discourse.onlinedegree.iitm.ac.in/t/tds-assignment-is-not-submitting/166189/6\">Tds: assignment is not submitting</a> <a class=\"badge-category__wrapper \" href=\"/c/courses/tds-kb/34\"><span data-category-id=\"34\" style=\"--category-badge-color: #0088CC; --category-badge-text-color: #FFFFFF; --parent-category-badge-color: #3AB54A;\" data-parent-category-id=\"9\" data-drop-close=\"true\" class=\"badge-category --has-parent\" title=\"This category is created to address subject-specific queries related to Tools in Data Science\"><span class=\"badge-category__name\">Tools in Data Science</span></span></a>\n  </div>\n  <blockquote>\n    Your scores are evaluated on a site that is external to the seek portal and is not integrated with the seek portal. Therefore seek does not know if you have submitted or not and by default says that it has not been submitted because it cannot see your external evaluation. There will not be a fix for this for some time. \nScores for GA1, GA2, GA3, GA4, GA5, Project1, Project2, ROE will NOT be inside your seek portal. \nThe scores will only be visible in the dashboard. Just ignore anything inside se…\n  </blockquote>\n</aside>\n\n<p>Kind regards</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591410,
+    "author": "bhavanagv",
+    "created_at": "2025-02-06T20:28:05.908Z",
+    "content": "<p><div class=\"lightbox-wrapper\"><a class=\"lightbox\" href=\"https://europe1.discourse-cdn.com/flex013/uploads/iitm/original/3X/d/5/d51f4ef2faa1d935371f7b95e9d49a85435b481d.png\" data-download-href=\"/uploads/short-url/upmMiZ8OcYksWdOArCnDkTjSw21.png?dl=1\" title=\"Screenshot (313)\" rel=\"noopener nofollow ugc\"><img src=\"https://europe1.discourse-cdn.com/flex013/uploads/iitm/optimized/3X/d/5/d51f4ef2faa1d935371f7b95e9d49a85435b481d_2_690x388.png\" alt=\"Screenshot (313)\" data-base62-sha1=\"upmMiZ8OcYksWdOArCnDkTjSw21\" width=\"690\" height=\"388\" srcset=\"https://europe1.discourse-cdn.com/flex013/uploads/iitm/optimized/3X/d/5/d51f4ef2faa1d935371f7b95e9d49a85435b481d_2_690x388.png, https://europe1.discourse-cdn.com/flex013/uploads/iitm/optimized/3X/d/5/d51f4ef2faa1d935371f7b95e9d49a85435b481d_2_1035x582.png 1.5x, https://europe1.discourse-cdn.com/flex013/uploads/iitm/optimized/3X/d/5/d51f4ef2faa1d935371f7b95e9d49a85435b481d_2_1380x776.png 2x\" data-dominant-color=\"E8E6E7\"><div class=\"meta\"><svg class=\"fa d-icon d-icon-far-image svg-icon\" aria-hidden=\"true\"><use href=\"#far-image\"></use></svg><span class=\"filename\">Screenshot (313)</span><span class=\"informations\">1920×1080 243 KB</span><svg class=\"fa d-icon d-icon-discourse-expand svg-icon\" aria-hidden=\"true\"><use href=\"#discourse-expand\"></use></svg></div></a></div></p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591335,
+    "author": "carlton",
+    "created_at": "2025-02-07T00:46:09.257Z",
+    "content": "<p>Dear Bhavanagv,</p>\n<p>The scores have not been pushed to the dashboard yet. Ignore seek portal. Seek portal will not have your submission or your scores because it is evaluated externally from the seek portal.</p>\n<p>Kind regards</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591414,
+    "author": "22f3000585",
+    "created_at": "2025-02-03T12:50:07.690Z",
+    "content": "<p>I had submitted the assignment still it’s shwoing that my score is 0 and that i have not submitted the assignment.</p>\n<p>Can you please look into it as i had saved my answers as well timely.<br>\n<div class=\"lightbox-wrapper\"><a class=\"lightbox\" href=\"https://europe1.discourse-cdn.com/flex013/uploads/iitm/original/3X/5/1/51fd5a5ad1f47e528360f19eb4fcaaccc3cee612.png\" data-download-href=\"/uploads/short-url/bHjtQ60wOL2wEIVXvst6qkVbToK.png?dl=1\" title=\"image\" rel=\"noopener nofollow ugc\"><img src=\"https://europe1.discourse-cdn.com/flex013/uploads/iitm/original/3X/5/1/51fd5a5ad1f47e528360f19eb4fcaaccc3cee612.png\" alt=\"image\" data-base62-sha1=\"bHjtQ60wOL2wEIVXvst6qkVbToK\" width=\"547\" height=\"258\"><div class=\"meta\"><svg class=\"fa d-icon d-icon-far-image svg-icon\" aria-hidden=\"true\"><use href=\"#far-image\"></use></svg><span class=\"filename\">image</span><span class=\"informations\">547×258 12.3 KB</span><svg class=\"fa d-icon d-icon-discourse-expand svg-icon\" aria-hidden=\"true\"><use href=\"#discourse-expand\"></use></svg></div></a></div></p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 590388,
+    "author": "Pururaj",
+    "created_at": "2025-02-03T18:47:17.785Z",
+    "content": "<p>same thing with my assignment even though i submitted it</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 590403,
+    "author": "Jivraj",
+    "created_at": "2025-02-03T22:46:28.017Z",
+    "content": "<p>Scores will soon be pushed to seek portal, till then it will show 0.</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 590647,
+    "author": "HRISHIKESH",
+    "created_at": "2025-02-04T15:23:50.195Z",
+    "content": "<p>Same for me…deadline is over and assignment not submitted…</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 590738,
+    "author": "23f2003413",
+    "created_at": "2025-02-05T06:58:39.938Z",
+    "content": "<p>same issue here as well</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 590981,
+    "author": "SameerNaik",
+    "created_at": "2025-02-05T18:37:49.504Z",
+    "content": "<p>Yes, same observation for my assignment as well.</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591014,
+    "author": "carlton",
+    "created_at": "2025-02-06T02:23:54.000Z",
+    "content": "<p>Scores for GA1, GA2, GA3, GA4, GA5, Project1, Project2, ROE will NOT be inside your seek portal.</p>\n<p>The scores will only be visible in the dashboard. Just ignore anything inside the seek portal.</p>\n<p>As stated in multiple places in discourse as well as in live sessions, The final score is always your last submission.</p>\n<p>Kind regards</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591798,
+    "author": "23f2000232",
+    "created_at": "2025-02-07T14:50:45.736Z",
+    "content": "<p>There are some errors in grading for GA2 and  GA3 for TDS, even after submitting the assignments score 0 was given and the seek portal displayed assignment was not submitted given that the login was from my own account and was submitted before the time and still got a score of 0.<br>\n<div class=\"lightbox-wrapper\"><a class=\"lightbox\" href=\"https://europe1.discourse-cdn.com/flex013/uploads/iitm/original/3X/2/9/29b6332cf814991a2cdae74355e67478bcc57c57.png\" data-download-href=\"/uploads/short-url/5WZW8Qh7uYZO6ttrWAT1OeRBBqf.png?dl=1\" title=\"Screenshot 2025-02-07 201316\" rel=\"noopener nofollow ugc\"><img src=\"https://europe1.discourse-cdn.com/flex013/uploads/iitm/optimized/3X/2/9/29b6332cf814991a2cdae74355e67478bcc57c57_2_690x356.png\" alt=\"Screenshot 2025-02-07 201316\" data-base62-sha1=\"5WZW8Qh7uYZO6ttrWAT1OeRBBqf\" width=\"690\" height=\"356\" srcset=\"https://europe1.discourse-cdn.com/flex013/uploads/iitm/optimized/3X/2/9/29b6332cf814991a2cdae74355e67478bcc57c57_2_690x356.png, https://europe1.discourse-cdn.com/flex013/uploads/iitm/optimized/3X/2/9/29b6332cf814991a2cdae74355e67478bcc57c57_2_1035x534.png 1.5x, https://europe1.discourse-cdn.com/flex013/uploads/iitm/optimized/3X/2/9/29b6332cf814991a2cdae74355e67478bcc57c57_2_1380x712.png 2x\" data-dominant-color=\"282C2F\"><div class=\"meta\"><svg class=\"fa d-icon d-icon-far-image svg-icon\" aria-hidden=\"true\"><use href=\"#far-image\"></use></svg><span class=\"filename\">Screenshot 2025-02-07 201316</span><span class=\"informations\">1859×960 88.4 KB</span><svg class=\"fa d-icon d-icon-discourse-expand svg-icon\" aria-hidden=\"true\"><use href=\"#discourse-expand\"></use></svg></div></a></div><br>\nand the same happened for the 3rd assignment</p>"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 591804,
+    "author": "carlton",
+    "created_at": "2025-02-07T15:07:24.073Z",
+    "content": "<p>Please refer to this post.</p>\n<aside class=\"quote\" data-post=\"20\" data-topic=\"166189\">\n  <div class=\"title\">\n    <div class=\"quote-controls\"></div>\n    <img alt=\"\" width=\"24\" height=\"24\" src=\"https://dub1.discourse-cdn.com/flex013/user_avatar/discourse.onlinedegree.iitm.ac.in/carlton/48/56317_2.png\" class=\"avatar\">\n    <a href=\"https://discourse.onlinedegree.iitm.ac.in/t/tds-assignment-is-not-submitting/166189/20\">Tds: assignment is not submitting</a> <a class=\"badge-category__wrapper \" href=\"/c/courses/tds-kb/34\"><span data-category-id=\"34\" style=\"--category-badge-color: #0088CC; --category-badge-text-color: #FFFFFF; --parent-category-badge-color: #3AB54A;\" data-parent-category-id=\"9\" data-drop-close=\"true\" class=\"badge-category --has-parent\" title=\"This category is created to address subject-specific queries related to Tools in Data Science\"><span class=\"badge-category__name\">Tools in Data Science</span></span></a>\n  </div>\n  <blockquote>\n    Scores for GA1, GA2, GA3, GA4, GA5, Project1, Project2, ROE will NOT be inside your seek portal. \nThe scores will only be visible in the dashboard. Just ignore anything inside the seek portal. \nAs stated in multiple places in discourse as well as in live sessions, The final score is always your last submission. \nKind regards\n  </blockquote>\n</aside>\n"
+  },
+  {
+    "topic_id": 166189,
+    "post_id": 592129,
+    "author": "Dnyanu27",
+    "created_at": "2025-02-08T12:32:16.079Z",
+    "content": "<p>Only 1st Graded assignment scores are visible on dashboard.  I have submitted 2nd and 3rd GA before the deadline but still it showing “not submitted” on the seek portal…</p>"
+  }
+]

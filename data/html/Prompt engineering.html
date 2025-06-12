@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://tds.s-anand.net/#/prompt-engineering -->
+<html lang="en" class="themeable"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+  <title>Prompt engineering</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/gramener/assets/main/straive-favicon.svg">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="./Prompt engineering_files/theme-simple-dark.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: light)" href="./Prompt engineering_files/theme-simple.css">
+  <style>
+    /* Add a YouTube icon on top of all YouTube links with images */
+    a[href*="youtu"]:has(img[src*="ytimg"]) {
+      position: relative;
+      display: inline-block;
+    }
+
+    a[href*="youtu"]:has(img[src*="ytimg"])::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100px;
+      height: 100px;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-youtube" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2z"/><path d="M6.4 5.209v4.818l4.157-2.408z" fill="white"/></svg>') no-repeat center center;
+      background-size: contain;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+  </style>
+<style type="text/css">.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}</style><style type="text/css">.docsify-pagination-container{display:flex;flex-wrap:wrap;justify-content:space-between;overflow:hidden;margin:5em 0 1em;border-top:1px solid rgba(0,0,0,.07)}.pagination-item{margin-top:2.5em}.pagination-item a,.pagination-item a:hover{text-decoration:none}.pagination-item a{color:currentColor}.pagination-item a:hover .pagination-item-title{text-decoration:underline}.pagination-item:not(:last-child) a .pagination-item-label,.pagination-item:not(:last-child) a .pagination-item-subtitle,.pagination-item:not(:last-child) a .pagination-item-title{opacity:.3;transition:all .2s}.pagination-item:last-child .pagination-item-label,.pagination-item:not(:last-child) a:hover .pagination-item-label{opacity:.6}.pagination-item:not(:last-child) a:hover .pagination-item-title{opacity:1}.pagination-item-label{font-size:.8em}.pagination-item-label>*{line-height:1;vertical-align:middle}.pagination-item-label svg{height:.8em;width:auto;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1px}.pagination-item--next{margin-left:auto;text-align:right}.pagination-item--next svg{margin-left:.5em}.pagination-item--previous svg{margin-right:.5em}.pagination-item-title{font-size:1.6em}.pagination-item-subtitle{text-transform:uppercase;opacity:.3}</style><style type="text/css">.docsify-copy-code-button,.docsify-copy-code-button>span{cursor:pointer;transition:all .25s ease}.docsify-copy-code-button{background:grey;background:var(--theme-color,grey);border:0;border-radius:0;color:#fff;font-size:1em;opacity:0;outline:0;overflow:visible;padding:.65em .8em;position:absolute;right:0;top:0;z-index:1}.docsify-copy-code-button>span{background:inherit;border-radius:3px;pointer-events:none}.docsify-copy-code-button>.error,.docsify-copy-code-button>.success{font-size:.825em;opacity:0;padding:.5em .65em;position:absolute;right:0;top:50%;transform:translateY(-50%);z-index:-100}.docsify-copy-code-button.error>.error,.docsify-copy-code-button.success>.success{opacity:1;right:100%;transform:translate(-25%,-50%)}.docsify-copy-code-button:focus,pre:hover .docsify-copy-code-button{opacity:1}.docsify-copy-code-button>[aria-live]{height:1px;left:-10000px;overflow:hidden;position:absolute;top:auto;width:1px}</style><style type="text/css">.sidebar-nav > ul > li ul {
+  display: none;
+}
+
+.app-sub-sidebar {
+  display: none;
+}
+
+.app-sub-sidebar.open {
+  display: block;
+}
+
+.sidebar-nav .open > ul:not(.app-sub-sidebar),
+.sidebar-nav .active:not(.collapse) > ul {
+  display: block;
+}
+
+/* 抖动 */
+.sidebar-nav li.open:not(.collapse) > ul {
+  display: block;
+}
+
+.active + ul.app-sub-sidebar {
+  display: block;
+}
+</style><style type="text/css">@media screen and (max-width: 768px) {
+  /* 移动端适配 */
+  .markdown-section {
+    max-width: none;
+    padding: 16px;
+  }
+  /* 改变原来按钮热区大小 */
+  .sidebar-toggle {
+    padding: 0 0 10px 10px;
+  }
+  /* my pin */
+  .sidebar-pin {
+    appearance: none;
+    outline: none;
+    position: fixed;
+    bottom: 0;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+  }
+}
+</style><style>:root{--theme-color: #dc3545;}</style><style>
+.sidebar {
+  padding-top: 0;
+}
+
+.search {
+  margin-bottom: 20px;
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.search .input-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.search .results-panel {
+  display: none;
+}
+
+.search .results-panel.show {
+  display: block;
+}
+
+.search input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 0.6em 7px;
+  font-size: inherit;
+  border: 1px solid transparent;
+}
+
+.search input:focus {
+  box-shadow: 0 0 5px var(--theme-color, #42b983);
+  border: 1px solid var(--theme-color, #42b983);
+}
+
+.search input::-webkit-search-decoration,
+.search input::-webkit-search-cancel-button,
+.search input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.search input::-ms-clear {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.search .clear-button {
+  cursor: pointer;
+  width: 36px;
+  text-align: right;
+  display: none;
+}
+
+.search .clear-button.show {
+  display: block;
+}
+
+.search .clear-button svg {
+  transform: scale(.5);
+}
+
+.search h2 {
+  font-size: 17px;
+  margin: 10px 0;
+}
+
+.search a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.search .matching-post {
+  border-bottom: 1px solid #eee;
+}
+
+.search .matching-post:last-child {
+  border-bottom: 0;
+}
+
+.search p {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.search p.empty {
+  text-align: center;
+}
+
+.app-name.hide, .sidebar-nav.hide {
+  display: none;
+}</style><style></style><style></style><style></style><style></style></head>
+
+<body data-platform="Win32" class="ready sticky ready-fix vsc-initialized" data-page="prompt-engineering.md" data-new-gr-c-s-check-loaded="14.1239.0" data-gr-ext-installed="">
+  <main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><div class="search"><div class="input-wrap">
+      <input type="search" value="" aria-label="Search text" placeholder="Type to search">
+      <button class="clear-button" aria-label="Clear search">
+                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="8" fill="black"></circle>
+                    <path stroke="white" stroke-width="1.5" d="M4.5,4.5,11.5,11.5" vector-effect="non-scaling-stroke"></path>
+                    <path stroke="white" stroke-width="1.5" d="M4.5,11.5,11.5,4.5" vector-effect="non-scaling-stroke"></path>
+                </svg>
+            </button>
+    </div>
+    <div class="results-panel"></div>
+    </div><h1 class="app-name"><a class="app-name-link" data-nosearch="" href="https://tds.s-anand.net/">Tools in Data Science</a></h1><div class="sidebar-nav"><ul><li class="file"><a href="https://tds.s-anand.net/#/README" title="Tools in Data Science">Tools in Data Science</a></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/development-tools" title="1. Development Tools">1. Development Tools</a><ul><li class="file"><a href="https://tds.s-anand.net/#/vscode" title="Editor: VS Code">Editor: VS Code</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-copilot" title="AI Code Editors: GitHub Copilot">AI Code Editors: GitHub Copilot</a></li><li class="file"><a href="https://tds.s-anand.net/#/uv" title="Python tools: uv">Python tools: uv</a></li><li class="file"><a href="https://tds.s-anand.net/#/npx" title="JavaScript tools: npx">JavaScript tools: npx</a></li><li class="file"><a href="https://tds.s-anand.net/#/unicode" title="Unicode">Unicode</a></li><li class="file"><a href="https://tds.s-anand.net/#/devtools" title="Browser: DevTools">Browser: DevTools</a></li><li class="file"><a href="https://tds.s-anand.net/#/css-selectors" title="CSS Selectors">CSS Selectors</a></li><li class="file"><a href="https://tds.s-anand.net/#/json" title="JSON">JSON</a></li><li class="file"><a href="https://tds.s-anand.net/#/bash" title="Terminal: Bash">Terminal: Bash</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm" title="AI Terminal Tools: llm">AI Terminal Tools: llm</a></li><li class="file"><a href="https://tds.s-anand.net/#/spreadsheets" title="Spreadsheet: Excel, Google Sheets">Spreadsheet: Excel, Google Sheets</a></li><li class="file"><a href="https://tds.s-anand.net/#/sqlite" title="Database: SQLite">Database: SQLite</a></li><li class="file"><a href="https://tds.s-anand.net/#/git" title="Version Control: Git, GitHub">Version Control: Git, GitHub</a></li></ul></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/deployment-tools" title="2. Deployment Tools">2. Deployment Tools</a><ul><li class="file"><a href="https://tds.s-anand.net/#/markdown" title="Markdown">Markdown</a></li><li class="file"><a href="https://tds.s-anand.net/#/image-compression" title="Images: Compression">Images: Compression</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-pages" title="Static hosting: GitHub Pages">Static hosting: GitHub Pages</a></li><li class="file"><a href="https://tds.s-anand.net/#/colab" title="Notebooks: Google Colab">Notebooks: Google Colab</a></li><li class="file"><a href="https://tds.s-anand.net/#/vercel" title="Serverless hosting: Vercel">Serverless hosting: Vercel</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-actions" title="CI/CD: GitHub Actions">CI/CD: GitHub Actions</a></li><li class="file"><a href="https://tds.s-anand.net/#/docker" title="Containers: Docker, Podman">Containers: Docker, Podman</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-codespaces" title="DevContainers: GitHub Codespaces">DevContainers: GitHub Codespaces</a></li><li class="file"><a href="https://tds.s-anand.net/#/ngrok" title="Tunneling: ngrok">Tunneling: ngrok</a></li><li class="file"><a href="https://tds.s-anand.net/#/cors" title="CORS">CORS</a></li><li class="file"><a href="https://tds.s-anand.net/#/rest-apis" title="REST APIs">REST APIs</a></li><li class="file"><a href="https://tds.s-anand.net/#/fastapi" title="Web Framework: FastAPI">Web Framework: FastAPI</a></li><li class="file"><a href="https://tds.s-anand.net/#/google-auth" title="Authentication: Google Auth">Authentication: Google Auth</a></li><li class="file"><a href="https://tds.s-anand.net/#/ollama" title="Local LLMs: Ollama">Local LLMs: Ollama</a></li></ul></li><li class="open folder level-1"><a href="https://tds.s-anand.net/#/large-language-models" title="3. Large Language Models">3. Large Language Models</a><ul><li class="active open file"><a href="https://tds.s-anand.net/#/prompt-engineering" title="Prompt engineering">Prompt engineering</a><ul class="app-sub-sidebar"><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/prompt-engineering?id=prompt-engineering" title="Prompt Engineering">Prompt Engineering</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/prompt-engineering?id=video-tutorials" title="Video Tutorials">Video Tutorials</a></li></ul></li><li class="file"><a href="https://tds.s-anand.net/#/tds-ta-instructions" title="TDS TA Instructions">TDS TA Instructions</a></li><li class="file"><a href="https://tds.s-anand.net/#/tds-gpt-reviewer" title="TDS GPT Reviewer">TDS GPT Reviewer</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-sentiment-analysis" title="LLM Sentiment Analysis">LLM Sentiment Analysis</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-text-extraction" title="LLM Text Extraction">LLM Text Extraction</a></li><li class="file"><a href="https://tds.s-anand.net/#/base64-encoding" title="Base 64 Encoding">Base 64 Encoding</a></li><li class="file"><a href="https://tds.s-anand.net/#/vision-models" title="Vision Models">Vision Models</a></li><li class="file"><a href="https://tds.s-anand.net/#/embeddings" title="Embeddings">Embeddings</a></li><li class="file"><a href="https://tds.s-anand.net/#/multimodal-embeddings" title="Multimodal Embeddings">Multimodal Embeddings</a></li><li class="file"><a href="https://tds.s-anand.net/#/topic-modeling" title="Topic modeling">Topic modeling</a></li><li class="file"><a href="https://tds.s-anand.net/#/vector-databases" title="Vector databases">Vector databases</a></li><li class="file"><a href="https://tds.s-anand.net/#/rag-cli" title="RAG with the CLI)">RAG with the CLI)</a></li><li class="file"><a href="https://tds.s-anand.net/#/hybrid-rag-typesense" title="Hybrid RAG with TypeSense">Hybrid RAG with TypeSense</a></li><li class="file"><a href="https://tds.s-anand.net/#/function-calling" title="Function Calling">Function Calling</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-agents" title="LLM Agents">LLM Agents</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-image-generation" title="LLM Image Generation">LLM Image Generation</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-speech" title="LLM Speech">LLM Speech</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-evals" title="LLM Evals">LLM Evals</a></li></ul></li><li class="file"><a href="https://tds.s-anand.net/#/project-tds-virtual-ta" title="Project 1">Project 1</a></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-sourcing" title="4. Data Sourcing">4. Data Sourcing</a><ul><li class="file"><a href="https://tds.s-anand.net/#/scraping-with-excel" title="Scraping with Excel">Scraping with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-with-google-sheets" title="Scraping with Google Sheets">Scraping with Google Sheets</a></li><li class="file"><a href="https://tds.s-anand.net/#/crawling-cli" title="Crawling with the CLI">Crawling with the CLI</a></li><li class="file"><a href="https://tds.s-anand.net/#/bbc-weather-api-with-python" title="BBC Weather API with Python">BBC Weather API with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-imdb-with-javascript" title="Scraping IMDb with JavaScript">Scraping IMDb with JavaScript</a></li><li class="file"><a href="https://tds.s-anand.net/#/nominatim-api-with-python" title="Nominatim API with Python">Nominatim API with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/wikipedia-data-with-python" title="Wikipedia Data with Python">Wikipedia Data with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-pdfs-with-tabula" title="Scraping PDFs with Tabula">Scraping PDFs with Tabula</a></li><li class="file"><a href="https://tds.s-anand.net/#/convert-pdfs-to-markdown" title="Convert PDFs to Markdown">Convert PDFs to Markdown</a></li><li class="file"><a href="https://tds.s-anand.net/#/convert-html-to-markdown" title="Convert HTML to Markdown">Convert HTML to Markdown</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-website-scraping" title="LLM Website Scraping">LLM Website Scraping</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-video-screen-scraping" title="LLM Video Screen-Scraping">LLM Video Screen-Scraping</a></li><li class="file"><a href="https://tds.s-anand.net/#/web-automation-with-playwright" title="Web Automation with Playwright">Web Automation with Playwright</a></li><li class="file"><a href="https://tds.s-anand.net/#/scheduled-scraping-with-github-actions" title="Scheduled Scraping with GitHub Actions">Scheduled Scraping with GitHub Actions</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-emarketer" title="Scraping emarketer.com">Scraping emarketer.com</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-live-sessions" title="Scraping: Live Sessions">Scraping: Live Sessions</a></li></ul></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-preparation" title="5. Data Preparation">5. Data Preparation</a><ul><li class="file"><a href="https://tds.s-anand.net/#/data-cleansing-in-excel" title="Data Cleansing in Excel">Data Cleansing in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-transformation-in-excel" title="Data Transformation in Excel">Data Transformation in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/splitting-text-in-excel" title="Splitting Text in Excel">Splitting Text in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-aggregation-in-excel" title="Data Aggregation in Excel">Data Aggregation in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell" title="Data Preparation in the Shell">Data Preparation in the Shell</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-preparation-in-the-editor" title="Data Preparation in the Editor">Data Preparation in the Editor</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-preparation-in-duckdb" title="Data Preparation in DuckDB">Data Preparation in DuckDB</a></li><li class="file"><a href="https://tds.s-anand.net/#/cleaning-data-with-openrefine" title="Cleaning Data with OpenRefine">Cleaning Data with OpenRefine</a></li><li class="file"><a href="https://tds.s-anand.net/#/parsing-json" title="Parsing JSON">Parsing JSON</a></li><li class="file"><a href="https://tds.s-anand.net/#/dbt" title="Data Transformation with dbt">Data Transformation with dbt</a></li><li class="file"><a href="https://tds.s-anand.net/#/transforming-images" title="Transforming Images">Transforming Images</a></li><li class="file"><a href="https://tds.s-anand.net/#/extracting-audio-and-transcripts" title="Extracting Audio and Transcripts">Extracting Audio and Transcripts</a><!-- #TODO Stitching together podcasts from snippets using SoX? --></li></ul></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-analysis" title="6. Data Analysis">6. Data Analysis</a><ul><li class="file"><a href="https://tds.s-anand.net/#/correlation-with-excel" title="Correlation with Excel">Correlation with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/regression-with-excel" title="Regression with Excel">Regression with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/forecasting-with-excel" title="Forecasting with Excel">Forecasting with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/outlier-detection-with-excel" title="Outlier Detection with Excel">Outlier Detection with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-python" title="Data Analysis with Python">Data Analysis with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-sql" title="Data Analysis with SQL">Data Analysis with SQL</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-datasette" title="Data Analysis with Datasette">Data Analysis with Datasette</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-duckdb" title="Data Analysis with DuckDB">Data Analysis with DuckDB</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-chatgpt" title="Data Analysis with ChatGPT">Data Analysis with ChatGPT</a></li><li class="file"><a href="https://tds.s-anand.net/#/geospatial-analysis-with-excel" title="Geospatial Analysis with Excel">Geospatial Analysis with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/geospatial-analysis-with-python" title="Geospatial Analysis with Python">Geospatial Analysis with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/geospatial-analysis-with-qgis" title="Geospatial Analysis with QGIS">Geospatial Analysis with QGIS</a></li><li class="file"><a href="https://tds.s-anand.net/#/network-analysis-in-python" title="Network Analysis in Python">Network Analysis in Python</a></li></ul></li><li class="file">Project 2</li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-visualization" title="7. Data Visualization">7. Data Visualization</a><ul><li class="file"><a href="https://tds.s-anand.net/#/visualizing-forecasts-with-excel" title="Visualizing Forecasts with Excel">Visualizing Forecasts with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-animated-data-with-powerpoint" title="Visualizing Animated Data with PowerPoint">Visualizing Animated Data with PowerPoint</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-animated-data-with-flourish" title="Visualizing Animated Data with Flourish">Visualizing Animated Data with Flourish</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-network-data-with-kumu" title="Visualizing Network Data with Kumu">Visualizing Network Data with Kumu</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-charts-with-excel" title="Visualizing Charts with Excel">Visualizing Charts with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-visualization-with-seaborn" title="Data Visualization with Seaborn">Data Visualization with Seaborn</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-visualization-with-chatgpt" title="Data Visualization with ChatGPT">Data Visualization with ChatGPT</a></li><li class="file"><a href="https://tds.s-anand.net/#/actor-network-visualization" title="Actor Network Visualization">Actor Network Visualization</a></li><li class="file"><a href="https://tds.s-anand.net/#/rawgraphs" title="RAWgraphs">RAWgraphs</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-storytelling" title="Data Storytelling">Data Storytelling</a></li><li class="file"><a href="https://tds.s-anand.net/#/narratives-with-llms" title="Narratives with LLMs">Narratives with LLMs</a></li><li class="file"><a href="https://tds.s-anand.net/#/marimo" title="Interactive Notebooks: Marimo">Interactive Notebooks: Marimo</a></li><li class="file"><a href="https://tds.s-anand.net/#/revealjs" title="HTML Slides: RevealJS">HTML Slides: RevealJS</a></li><li class="file"><a href="https://tds.s-anand.net/#/marp" title="Markdown Presentations: Marp">Markdown Presentations: Marp</a></li></ul></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><h2 id="prompt-engineering"><a href="https://tds.s-anand.net/#/prompt-engineering?id=prompt-engineering" data-id="prompt-engineering" class="anchor"><span>Prompt Engineering</span></a></h2><p>Prompt engineering is the process of crafting effective prompts for large language models (LLMs).</p><p>One of the best ways to approach prompt engineering is to think of LLMs as a smart colleague (with amnesia) who needs explicit instructions.</p><p>The most authoritative guides are from the LLM providers themselves:</p><ul><li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/" target="_blank" rel="noopener">Anthropic</a></li><li><a href="https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/introduction-prompt-design" target="_blank" rel="noopener">Google</a></li><li><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI</a></li></ul><p>Here are some best practices:</p><h3 id="use-prompt-optimizers"><a href="https://tds.s-anand.net/#/prompt-engineering?id=use-prompt-optimizers" data-id="use-prompt-optimizers" class="anchor"><span>Use prompt optimizers</span></a></h3><p>They rewrite your prompt to improve it. Explore:</p><ul><li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prompt-improver" target="_blank" rel="noopener">Anthropic Prompt Optimizer</a></li><li><a href="https://platform.openai.com/docs/guides/prompt-generation" target="_blank" rel="noopener">OpenAI Prompt Generation</a></li><li><a href="https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/ai-powered-prompt-writing" target="_blank" rel="noopener">Google AI-powered prompt writing tools</a></li></ul><h3 id="be-clear-direct-and-detailed"><a href="https://tds.s-anand.net/#/prompt-engineering?id=be-clear-direct-and-detailed" data-id="be-clear-direct-and-detailed" class="anchor"><span>Be clear, direct, and detailed</span></a></h3><p>Be explicit and thorough. Include all necessary context, goals, and details so the model understands the full picture.</p><ul><li><strong>BAD</strong>: <em>Explain gravitation lensing.</em> (Reason: Vague and lacks context or detail.)</li><li><strong>GOOD</strong>: <em>Explain the concept of gravitational lensing to a high school student who understands basic physics, including how it’s observed and its significance in astronomy.</em> (Reason: Specifies the audience, scope, and focus.)</li></ul><blockquote>
+<p>When you ask a question, don’t be vague. Spell it out. Give every detail the listener needs.
+The clearer you are, the better the answer you’ll get.
+For example, don’t just say, Explain Gravitation Lensing.
+Say, Explain the concept of gravitational lensing to a high school student who understands basic physics, including how it’s observed and its significance in astronomy.</p></blockquote>
+<p><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/be-clear-and-direct" target="_blank" rel="noopener">Anthropic</a>
+| <a href="https://platform.openai.com/docs/guides/prompt-engineering#tactic-include-details-in-your-query-to-get-more-relevant-answers" target="_blank" rel="noopener">OpenAI</a>
+| <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/clear-instructions" target="_blank" rel="noopener">Google</a></p><h3 id="give-examples"><a href="https://tds.s-anand.net/#/prompt-engineering?id=give-examples" data-id="give-examples" class="anchor"><span>Give examples</span></a></h3><p>Provide 2-3 relevant examples to guide the model on the style, structure, or format you expect. This helps the model produce outputs consistent with your desired style.</p><ul><li><p><strong>BAD</strong>: <em>Explain how to tie a bow tie.</em> (Reason: No examples or reference points given.)</p></li><li><p><strong>GOOD</strong>:
+<em>Explain how to tie a bow tie. For example:</em></p><ol><li><em>To tie a shoelace, you cross the laces and pull them tight…</em></li><li><em>To tie a necktie, you place it around the collar and loop it through…</em></li></ol><p><em>Now, apply a similar step-by-step style to describe how to tie a bow tie.</em> (Reason: Provides clear examples and a pattern to follow.)</p></li></ul><blockquote>
+<p>Give examples to the model. If you want someone to build a house, show them a sketch. Don’t just say ‘build something.’
+Giving examples is like showing a pattern. It makes everything easier to follow.</p></blockquote>
+<p><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting" target="_blank" rel="noopener">Anthropic</a>
+| <a href="https://platform.openai.com/docs/guides/prompt-engineering#tactic-provide-examples" target="_blank" rel="noopener">OpenAI</a>
+| <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/few-shot-examples" target="_blank" rel="noopener">Google</a></p><h3 id="think-step-by-step"><a href="https://tds.s-anand.net/#/prompt-engineering?id=think-step-by-step" data-id="think-step-by-step" class="anchor"><span>Think step by step</span></a></h3><p>Instruct the model to reason through the problem step by step. This leads to more logical, well-structured answers.</p><ul><li><strong>BAD</strong>: <em>Given this transcript, is the customer satisfied?</em> (Reason: No prompt for structured reasoning.)</li><li><strong>GOOD</strong>: <em>Given this transcript, is the customer satisfied? Think step by step.</em> (Reason: Directly instructs the model to break down reasoning into steps.)</li></ul><blockquote>
+<p>Ask the model to think step by step. Don’t ask the model to just give the final answer right away.
+That’s like asking someone to answer with the first thing that pops into their head.
+Instead, ask them to break down their thought process into simple moves — like showing each rung of a ladder as they climb.
+For example, when thinking step by step, the model could, A, list each customer question, B, find out if it was addressed, and C, decide that the agent answered only 2 out of the 3 questions.</p></blockquote>
+<p><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/chain-of-thought" target="_blank" rel="noopener">Anthropic</a>
+| <a href="https://platform.openai.com/docs/guides/prompt-engineering#strategy-give-models-time-to-think" target="_blank" rel="noopener">OpenAI</a>
+| <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/break-down-prompts" target="_blank" rel="noopener">Google</a></p><h3 id="assign-a-role"><a href="https://tds.s-anand.net/#/prompt-engineering?id=assign-a-role" data-id="assign-a-role" class="anchor"><span>Assign a role</span></a></h3><p>Specify a role or persona for the model. This provides context and helps tailor the response style.</p><ul><li><strong>BAD</strong>: <em>Explain how to fix a software bug.</em> (Reason: No role or perspective given.)</li><li><strong>GOOD</strong>: <em>You are a seasoned software engineer. Explain how to fix a software bug in legacy code, including the debugging and testing process.</em> (Reason: Assigns a clear, knowledgeable persona, guiding the style and depth.)</li></ul><blockquote>
+<p>Tell the model who they are. Maybe they’re a seasoned software engineer fixing a legacy bug, or an experienced copy editor revising a publication.
+By clearly telling the model who they are, you help them speak with just the right expertise and style.
+Suddenly, your explanation sounds like it’s coming from a true specialist, not a random voice.</p></blockquote>
+<p><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts" target="_blank" rel="noopener">Anthropic</a>
+| <a href="https://platform.openai.com/docs/guides/prompt-engineering#tactic-ask-the-model-to-adopt-a-persona" target="_blank" rel="noopener">OpenAI</a>
+| <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/assign-role" target="_blank" rel="noopener">Google</a></p><h3 id="use-xml-to-structure-your-prompt"><a href="https://tds.s-anand.net/#/prompt-engineering?id=use-xml-to-structure-your-prompt" data-id="use-xml-to-structure-your-prompt" class="anchor"><span>Use XML to structure your prompt</span></a></h3><p>Use XML tags to separate different parts of the prompt clearly. This helps the model understand structure and requirements.</p><ul><li><strong>BAD</strong>: <em>Here’s what I want: Provide a summary and then an example.</em> (Reason: Unstructured, no clear separation of tasks.)</li><li><strong>GOOD</strong>:<pre v-pre="" data-lang="xml" class="language-xml"><code class="lang-xml language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>instructions</span><span class="token punctuation">&gt;</span></span>
+  Provide a summary of the concept of machine learning.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>instructions</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>example</span><span class="token punctuation">&gt;</span></span>
+  Then provide a simple, concrete example of a machine learning application (e.g., an email spam filter).
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>example</span><span class="token punctuation">&gt;</span></span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre>(Reason: Uses XML tags to clearly distinguish instructions from examples.)</li></ul><blockquote>
+<p>Think of your request like a box. XML tags are neat little labels on that box.
+They help keep parts sorted, so nothing gets lost in the shuffle.</p></blockquote>
+<p><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags" target="_blank" rel="noopener">Anthropic</a>
+| <a href="https://platform.openai.com/docs/guides/prompt-engineering#tactic-use-delimiters-to-clearly-indicate-distinct-parts-of-the-input" target="_blank" rel="noopener">OpenAI</a>
+| <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/structure-prompts" target="_blank" rel="noopener">Google</a></p><h3 id="use-markdown-to-format-your-output"><a href="https://tds.s-anand.net/#/prompt-engineering?id=use-markdown-to-format-your-output" data-id="use-markdown-to-format-your-output" class="anchor"><span>Use Markdown to format your output</span></a></h3><p>Encourage the model to use Markdown for headings, lists, code blocks, and other formatting features to produce structured, easily readable answers.</p><ul><li><strong>BAD</strong>: <em>Give me the steps in plain text.</em> (Reason: No specific formatting instructions, less readable.)</li><li><strong>GOOD</strong>: <em>Provide the steps in a markdown-formatted list with ### headings for each section and numbered bullet points.</em> (Reason: Directly instructs to use Markdown formatting, making output more structured and clear.)</li><li><strong>BAD</strong>: <em>Correct the spelling and show the corrections.</em> (Reason: No specific formatting instructions)</li><li><strong>GOOD</strong>: <em>Correct the spelling, showing &lt;ins&gt;additions&lt;/ins&gt; and &lt;del&gt;deletions&lt;/del&gt;.</em> (Reason: Directly instructs to use HTML formatting, making output more structured and clear.)</li></ul><blockquote>
+<p>Markdown is a simple formatting language that all models understand.
+You can have them add neat headings, sections, bold highlights, and bullet points.
+These make complex documents more scannable and easy on the eyes.</p></blockquote>
+<h3 id="use-json-for-machine-readable-output"><a href="https://tds.s-anand.net/#/prompt-engineering?id=use-json-for-machine-readable-output" data-id="use-json-for-machine-readable-output" class="anchor"><span>Use JSON for machine-readable output</span></a></h3><p>When you need structured data, ask for a JSON-formatted response. This ensures the output is machine-readable and organized.</p><ul><li><p><strong>BAD</strong>: <em>Just list the items.</em> (Reason: Unstructured plain text makes parsing harder.)</p></li><li><p><strong>GOOD</strong>:</p><pre v-pre="" data-lang="markdown" class="language-markdown"><code class="lang-markdown language-markdown">Organize as an array of objects in a JSON format, like this:
+
+<span class="token code"><span class="token punctuation">```</span><span class="token code-language">json</span>
+<span class="token code-block language-json"><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Item 1"</span><span class="token punctuation">,</span> <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Description of Item 1"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Item 2"</span><span class="token punctuation">,</span> <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Description of Item 2"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Item 3"</span><span class="token punctuation">,</span> <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Description of Item 3"</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></span>
+<span class="token punctuation">```</span></span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>(Reason: Instructing JSON format ensures structured, machine-readable output.)</p></li></ul><p>Note: Always use <a href="https://tds.s-anand.net/#/playground?id=attachments">JSON schema</a> if possible. <a href="https://json-schema.org/" target="_blank" rel="noopener">JSON schema</a> is a way to describe the structure of JSON data. An easy way to get the JSON schema is to give ChatGPT sample output and ask it to generate the schema.</p><blockquote>
+<p>Imagine you’re organizing data for a big project. Plain text is like dumping everything into one messy pile — it’s hard to find what you need later.
+JSON, on the other hand, is like packing your data into neat, labeled boxes within boxes.
+Everything has its place: fields like ‘name,’ ‘description,’ and ‘value’ make the data easy to read, especially for machines.
+For example, instead of just listing items, you can structure them as a JSON array, with each item as an object.
+That way, when you hand it to a program, it’s all clear and ready to use.</p></blockquote>
+<h3 id="prefer-yesno-answers"><a href="https://tds.s-anand.net/#/prompt-engineering?id=prefer-yesno-answers" data-id="prefer-yesno-answers" class="anchor"><span>Prefer Yes/No answers</span></a></h3><p>Convert rating or percentage questions into Yes/No queries. LLMs handle binary choices better than numeric scales.</p><ul><li><strong>BAD</strong>: <em>On a scale of 1-10, how confident are you that this method works?</em> (Reason: Asks for a numeric rating, which can be imprecise.)</li><li><strong>GOOD</strong>: <em>Is this method likely to work as intended? Please give a reasoning and then answer Yes or No.</em> (Reason: A binary question simplifies the response and clarifies what’s being asked.)</li></ul><blockquote>
+<p>Don’t ask ‘On a scale of one to five…’. Models are not good with numbers.
+They don’t know how to grade something 7 versus 8 on a 10 point scale. ‘Yes or no?’ is simple. It’s clear. It’s quick.
+So, break your question into simple parts that they can answer with just a yes or a no.</p></blockquote>
+<h3 id="ask-for-reason-first-then-the-answer"><a href="https://tds.s-anand.net/#/prompt-engineering?id=ask-for-reason-first-then-the-answer" data-id="ask-for-reason-first-then-the-answer" class="anchor"><span>Ask for reason first, then the answer</span></a></h3><p>Instruct the model to provide its reasoning steps <em>before</em> stating the final answer. This makes it less likely to justify itself and more likely to think deeper, leading to more accurate results.</p><ul><li><strong>BAD</strong>: <em>What is the best route to take?</em> (Reason: Direct question without prompting reasoning steps first.)</li><li><strong>GOOD</strong>: <em>First, explain your reasoning step by step for how you determine the best route. Then, after you’ve reasoned it out, state your final recommendation for the best route.</em> (Reason: Forces the model to show its reasoning process before giving the final answer.)</li></ul><blockquote>
+<p>BEFORE making its final choice, have the model talk through their thinking. Reasoning first, answer second.
+That way, the model won’t be tempted to justify an answer that they gave impulsively. It is also more likely to think deeper.</p></blockquote>
+<h3 id="use-proper-spelling-and-grammar"><a href="https://tds.s-anand.net/#/prompt-engineering?id=use-proper-spelling-and-grammar" data-id="use-proper-spelling-and-grammar" class="anchor"><span>Use proper spelling and grammar</span></a></h3><p>A well-written, grammatically correct prompt clarifies expectations. Poorly structured prompts can confuse the model.</p><ul><li><strong>BAD</strong>: <em>xplin wht the weirless netork do? make shur to giv me a anser??</em> (Reason: Poor spelling and unclear instructions.)</li><li><strong>GOOD</strong>: <em>Explain what a wireless network does. Please provide a detailed, step-by-step explanation.</em> (Reason: Proper spelling and clarity lead to a more coherent response.)</li></ul><blockquote>
+<p>If your question sounds like gibberish, expect a messy answer. Speak cleanly.
+When you do, the response will be much clearer.</p></blockquote>
+<h2 id="video-tutorials"><a href="https://tds.s-anand.net/#/prompt-engineering?id=video-tutorials" data-id="video-tutorials" class="anchor"><span>Video Tutorials</span></a></h2><p>Watch <a href="https://youtu.be/_ZvnD73m40o" target="_blank" rel="noopener">Prompt Engineering Tutorial – Master ChatGPT and LLM Responses (41 min)</a>. It covers:</p><ol><li>Basics of <strong>AI and large language models</strong>.</li><li>How to write clear and detailed prompts to improve answers.</li><li>Tips for creating interactive and personalized AI responses.</li><li>Advanced topics like <strong>AI mistakes</strong> (hallucinations) and <strong>text embeddings</strong> (how AI understands words).</li><li>Fun examples, like making AI write poems or correct grammar.</li></ol><p><a href="https://youtu.be/_ZvnD73m40o" target="_blank" rel="noopener"><img src="./Prompt engineering_files/sddefault.webp" data-origin="https://i.ytimg.com/vi_webp/_ZvnD73m40o/sddefault.webp" alt="Prompt Engineering Tutorial – Master ChatGPT and LLM Responses"></a></p><div class="docsify-pagination-container">
+        <div class="pagination-item pagination-item--previous">
+          <a href="https://tds.s-anand.net/#/large-language-models">
+            <div class="pagination-item-label">
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="8,2 2,8 8,14"></polyline>
+              </svg>
+              <span>Previous</span>
+            </div>
+            <div class="pagination-item-title">3. Large Language Models</div>
+      <div class="pagination-item-subtitle"></div></a>
+        </div>
+      
+        <div class="pagination-item pagination-item--next">
+          <a href="https://tds.s-anand.net/#/tds-ta-instructions">
+            <div class="pagination-item-label">
+              <span>Next</span>
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="2,2 8,8 2,14"></polyline>
+              </svg>
+            </div>
+            <div class="pagination-item-title">TDS TA Instructions</div>
+      <div class="pagination-item-subtitle"></div></a>
+        </div>
+      </div></article></section></main>
+  <script>
+    window.$docsify = {
+      name: 'Tools in Data Science',
+      subMaxLevel: 2,
+      themeColor: '#dc3545',
+      loadSidebar: true,
+      sidebarDisplayLevel: 0,
+      pagination: {
+        previousText: 'Previous',
+        nextText: 'Next',
+        crossChapter: true,
+        crossChapterText: true
+      },
+    };
+
+  </script>
+  <script src="./Prompt engineering_files/docsify@4"></script>
+  <script src="./Prompt engineering_files/search.js.download"></script>
+  <script src="./Prompt engineering_files/zoom-image.min.js.download"></script>
+  <script src="./Prompt engineering_files/docsify-pagination.min.js.download"></script>
+  <script src="./Prompt engineering_files/docsify-themeable.min.js.download"></script>
+  <script src="./Prompt engineering_files/docsify-copy-code.min.js.download"></script>
+  <script src="./Prompt engineering_files/docsify-sidebar-collapse.min.js.download"></script>
+  <script src="./Prompt engineering_files/prism-bash.min.js.download"></script>
+  <script src="./Prompt engineering_files/prism-python.min.js.download"></script>
+  <script src="./Prompt engineering_files/prism-sql.min.js.download"></script>
+  <script src="./Prompt engineering_files/prism-yaml.min.js.download"></script>
+  <script src="./Prompt engineering_files/prism-json.min.js.download"></script>
+  <script src="./Prompt engineering_files/prism-markdown.min.js.download"></script>
+
+
+
+<div class="progress" style="opacity: 0; width: 0%;"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>

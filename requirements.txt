@@ -1,0 +1,6 @@
+flask
+flask-cors
+openai==0.28.1
+sentence-transformers
+beautifulsoup4
+tqdm

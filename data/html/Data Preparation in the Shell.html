@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://tds.s-anand.net/#/data-preparation-in-the-shell -->
+<html lang="en" class="themeable"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+  <title>Data Preparation in the Shell</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/gramener/assets/main/straive-favicon.svg">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="./Data Preparation in the Shell_files/theme-simple-dark.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: light)" href="./Data Preparation in the Shell_files/theme-simple.css">
+  <style>
+    /* Add a YouTube icon on top of all YouTube links with images */
+    a[href*="youtu"]:has(img[src*="ytimg"]) {
+      position: relative;
+      display: inline-block;
+    }
+
+    a[href*="youtu"]:has(img[src*="ytimg"])::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100px;
+      height: 100px;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-youtube" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2z"/><path d="M6.4 5.209v4.818l4.157-2.408z" fill="white"/></svg>') no-repeat center center;
+      background-size: contain;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+  </style>
+<style type="text/css">.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}</style><style type="text/css">.docsify-pagination-container{display:flex;flex-wrap:wrap;justify-content:space-between;overflow:hidden;margin:5em 0 1em;border-top:1px solid rgba(0,0,0,.07)}.pagination-item{margin-top:2.5em}.pagination-item a,.pagination-item a:hover{text-decoration:none}.pagination-item a{color:currentColor}.pagination-item a:hover .pagination-item-title{text-decoration:underline}.pagination-item:not(:last-child) a .pagination-item-label,.pagination-item:not(:last-child) a .pagination-item-subtitle,.pagination-item:not(:last-child) a .pagination-item-title{opacity:.3;transition:all .2s}.pagination-item:last-child .pagination-item-label,.pagination-item:not(:last-child) a:hover .pagination-item-label{opacity:.6}.pagination-item:not(:last-child) a:hover .pagination-item-title{opacity:1}.pagination-item-label{font-size:.8em}.pagination-item-label>*{line-height:1;vertical-align:middle}.pagination-item-label svg{height:.8em;width:auto;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1px}.pagination-item--next{margin-left:auto;text-align:right}.pagination-item--next svg{margin-left:.5em}.pagination-item--previous svg{margin-right:.5em}.pagination-item-title{font-size:1.6em}.pagination-item-subtitle{text-transform:uppercase;opacity:.3}</style><style type="text/css">.docsify-copy-code-button,.docsify-copy-code-button>span{cursor:pointer;transition:all .25s ease}.docsify-copy-code-button{background:grey;background:var(--theme-color,grey);border:0;border-radius:0;color:#fff;font-size:1em;opacity:0;outline:0;overflow:visible;padding:.65em .8em;position:absolute;right:0;top:0;z-index:1}.docsify-copy-code-button>span{background:inherit;border-radius:3px;pointer-events:none}.docsify-copy-code-button>.error,.docsify-copy-code-button>.success{font-size:.825em;opacity:0;padding:.5em .65em;position:absolute;right:0;top:50%;transform:translateY(-50%);z-index:-100}.docsify-copy-code-button.error>.error,.docsify-copy-code-button.success>.success{opacity:1;right:100%;transform:translate(-25%,-50%)}.docsify-copy-code-button:focus,pre:hover .docsify-copy-code-button{opacity:1}.docsify-copy-code-button>[aria-live]{height:1px;left:-10000px;overflow:hidden;position:absolute;top:auto;width:1px}</style><style type="text/css">.sidebar-nav > ul > li ul {
+  display: none;
+}
+
+.app-sub-sidebar {
+  display: none;
+}
+
+.app-sub-sidebar.open {
+  display: block;
+}
+
+.sidebar-nav .open > ul:not(.app-sub-sidebar),
+.sidebar-nav .active:not(.collapse) > ul {
+  display: block;
+}
+
+/* 抖动 */
+.sidebar-nav li.open:not(.collapse) > ul {
+  display: block;
+}
+
+.active + ul.app-sub-sidebar {
+  display: block;
+}
+</style><style type="text/css">@media screen and (max-width: 768px) {
+  /* 移动端适配 */
+  .markdown-section {
+    max-width: none;
+    padding: 16px;
+  }
+  /* 改变原来按钮热区大小 */
+  .sidebar-toggle {
+    padding: 0 0 10px 10px;
+  }
+  /* my pin */
+  .sidebar-pin {
+    appearance: none;
+    outline: none;
+    position: fixed;
+    bottom: 0;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+  }
+}
+</style><style>:root{--theme-color: #dc3545;}</style><style>
+.sidebar {
+  padding-top: 0;
+}
+
+.search {
+  margin-bottom: 20px;
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.search .input-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.search .results-panel {
+  display: none;
+}
+
+.search .results-panel.show {
+  display: block;
+}
+
+.search input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 0.6em 7px;
+  font-size: inherit;
+  border: 1px solid transparent;
+}
+
+.search input:focus {
+  box-shadow: 0 0 5px var(--theme-color, #42b983);
+  border: 1px solid var(--theme-color, #42b983);
+}
+
+.search input::-webkit-search-decoration,
+.search input::-webkit-search-cancel-button,
+.search input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.search input::-ms-clear {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.search .clear-button {
+  cursor: pointer;
+  width: 36px;
+  text-align: right;
+  display: none;
+}
+
+.search .clear-button.show {
+  display: block;
+}
+
+.search .clear-button svg {
+  transform: scale(.5);
+}
+
+.search h2 {
+  font-size: 17px;
+  margin: 10px 0;
+}
+
+.search a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.search .matching-post {
+  border-bottom: 1px solid #eee;
+}
+
+.search .matching-post:last-child {
+  border-bottom: 0;
+}
+
+.search p {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.search p.empty {
+  text-align: center;
+}
+
+.app-name.hide, .sidebar-nav.hide {
+  display: none;
+}</style><style></style><style></style><style></style><style></style><style></style><style></style><style></style></head>
+
+<body data-platform="Win32" class="ready sticky ready-fix vsc-initialized" data-page="data-preparation-in-the-shell.md" data-new-gr-c-s-check-loaded="14.1239.0" data-gr-ext-installed="">
+  <main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><div class="search"><div class="input-wrap">
+      <input type="search" value="" aria-label="Search text" placeholder="Type to search">
+      <button class="clear-button" aria-label="Clear search">
+                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="8" fill="black"></circle>
+                    <path stroke="white" stroke-width="1.5" d="M4.5,4.5,11.5,11.5" vector-effect="non-scaling-stroke"></path>
+                    <path stroke="white" stroke-width="1.5" d="M4.5,11.5,11.5,4.5" vector-effect="non-scaling-stroke"></path>
+                </svg>
+            </button>
+    </div>
+    <div class="results-panel"></div>
+    </div><h1 class="app-name"><a class="app-name-link" data-nosearch="" href="https://tds.s-anand.net/">Tools in Data Science</a></h1><div class="sidebar-nav"><ul><li class="file"><a href="https://tds.s-anand.net/#/README" title="Tools in Data Science">Tools in Data Science</a></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/development-tools" title="1. Development Tools">1. Development Tools</a><ul><li class="file"><a href="https://tds.s-anand.net/#/vscode" title="Editor: VS Code">Editor: VS Code</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-copilot" title="AI Code Editors: GitHub Copilot">AI Code Editors: GitHub Copilot</a></li><li class="file"><a href="https://tds.s-anand.net/#/uv" title="Python tools: uv">Python tools: uv</a></li><li class="file"><a href="https://tds.s-anand.net/#/npx" title="JavaScript tools: npx">JavaScript tools: npx</a></li><li class="file"><a href="https://tds.s-anand.net/#/unicode" title="Unicode">Unicode</a></li><li class="file"><a href="https://tds.s-anand.net/#/devtools" title="Browser: DevTools">Browser: DevTools</a></li><li class="file"><a href="https://tds.s-anand.net/#/css-selectors" title="CSS Selectors">CSS Selectors</a></li><li class="file"><a href="https://tds.s-anand.net/#/json" title="JSON">JSON</a></li><li class="file"><a href="https://tds.s-anand.net/#/bash" title="Terminal: Bash">Terminal: Bash</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm" title="AI Terminal Tools: llm">AI Terminal Tools: llm</a></li><li class="file"><a href="https://tds.s-anand.net/#/spreadsheets" title="Spreadsheet: Excel, Google Sheets">Spreadsheet: Excel, Google Sheets</a></li><li class="file"><a href="https://tds.s-anand.net/#/sqlite" title="Database: SQLite">Database: SQLite</a></li><li class="file"><a href="https://tds.s-anand.net/#/git" title="Version Control: Git, GitHub">Version Control: Git, GitHub</a></li></ul></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/deployment-tools" title="2. Deployment Tools">2. Deployment Tools</a><ul><li class="file"><a href="https://tds.s-anand.net/#/markdown" title="Markdown">Markdown</a></li><li class="file"><a href="https://tds.s-anand.net/#/image-compression" title="Images: Compression">Images: Compression</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-pages" title="Static hosting: GitHub Pages">Static hosting: GitHub Pages</a></li><li class="file"><a href="https://tds.s-anand.net/#/colab" title="Notebooks: Google Colab">Notebooks: Google Colab</a></li><li class="file"><a href="https://tds.s-anand.net/#/vercel" title="Serverless hosting: Vercel">Serverless hosting: Vercel</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-actions" title="CI/CD: GitHub Actions">CI/CD: GitHub Actions</a></li><li class="file"><a href="https://tds.s-anand.net/#/docker" title="Containers: Docker, Podman">Containers: Docker, Podman</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-codespaces" title="DevContainers: GitHub Codespaces">DevContainers: GitHub Codespaces</a></li><li class="file"><a href="https://tds.s-anand.net/#/ngrok" title="Tunneling: ngrok">Tunneling: ngrok</a></li><li class="file"><a href="https://tds.s-anand.net/#/cors" title="CORS">CORS</a></li><li class="file"><a href="https://tds.s-anand.net/#/rest-apis" title="REST APIs">REST APIs</a></li><li class="file"><a href="https://tds.s-anand.net/#/fastapi" title="Web Framework: FastAPI">Web Framework: FastAPI</a></li><li class="file"><a href="https://tds.s-anand.net/#/google-auth" title="Authentication: Google Auth">Authentication: Google Auth</a></li><li class="file"><a href="https://tds.s-anand.net/#/ollama" title="Local LLMs: Ollama">Local LLMs: Ollama</a></li></ul></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/large-language-models" title="3. Large Language Models">3. Large Language Models</a><ul><li class="file"><a href="https://tds.s-anand.net/#/prompt-engineering" title="Prompt engineering">Prompt engineering</a></li><li class="file"><a href="https://tds.s-anand.net/#/tds-ta-instructions" title="TDS TA Instructions">TDS TA Instructions</a></li><li class="file"><a href="https://tds.s-anand.net/#/tds-gpt-reviewer" title="TDS GPT Reviewer">TDS GPT Reviewer</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-sentiment-analysis" title="LLM Sentiment Analysis">LLM Sentiment Analysis</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-text-extraction" title="LLM Text Extraction">LLM Text Extraction</a></li><li class="file"><a href="https://tds.s-anand.net/#/base64-encoding" title="Base 64 Encoding">Base 64 Encoding</a></li><li class="file"><a href="https://tds.s-anand.net/#/vision-models" title="Vision Models">Vision Models</a></li><li class="file"><a href="https://tds.s-anand.net/#/embeddings" title="Embeddings">Embeddings</a></li><li class="file"><a href="https://tds.s-anand.net/#/multimodal-embeddings" title="Multimodal Embeddings">Multimodal Embeddings</a></li><li class="file"><a href="https://tds.s-anand.net/#/topic-modeling" title="Topic modeling">Topic modeling</a></li><li class="file"><a href="https://tds.s-anand.net/#/vector-databases" title="Vector databases">Vector databases</a></li><li class="file"><a href="https://tds.s-anand.net/#/rag-cli" title="RAG with the CLI)">RAG with the CLI)</a></li><li class="file"><a href="https://tds.s-anand.net/#/hybrid-rag-typesense" title="Hybrid RAG with TypeSense">Hybrid RAG with TypeSense</a></li><li class="file"><a href="https://tds.s-anand.net/#/function-calling" title="Function Calling">Function Calling</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-agents" title="LLM Agents">LLM Agents</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-image-generation" title="LLM Image Generation">LLM Image Generation</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-speech" title="LLM Speech">LLM Speech</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-evals" title="LLM Evals">LLM Evals</a></li></ul></li><li class="file"><a href="https://tds.s-anand.net/#/project-tds-virtual-ta" title="Project 1">Project 1</a></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-sourcing" title="4. Data Sourcing">4. Data Sourcing</a><ul><li class="file"><a href="https://tds.s-anand.net/#/scraping-with-excel" title="Scraping with Excel">Scraping with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-with-google-sheets" title="Scraping with Google Sheets">Scraping with Google Sheets</a></li><li class="file"><a href="https://tds.s-anand.net/#/crawling-cli" title="Crawling with the CLI">Crawling with the CLI</a></li><li class="file"><a href="https://tds.s-anand.net/#/bbc-weather-api-with-python" title="BBC Weather API with Python">BBC Weather API with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-imdb-with-javascript" title="Scraping IMDb with JavaScript">Scraping IMDb with JavaScript</a></li><li class="file"><a href="https://tds.s-anand.net/#/nominatim-api-with-python" title="Nominatim API with Python">Nominatim API with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/wikipedia-data-with-python" title="Wikipedia Data with Python">Wikipedia Data with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-pdfs-with-tabula" title="Scraping PDFs with Tabula">Scraping PDFs with Tabula</a></li><li class="file"><a href="https://tds.s-anand.net/#/convert-pdfs-to-markdown" title="Convert PDFs to Markdown">Convert PDFs to Markdown</a></li><li class="file"><a href="https://tds.s-anand.net/#/convert-html-to-markdown" title="Convert HTML to Markdown">Convert HTML to Markdown</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-website-scraping" title="LLM Website Scraping">LLM Website Scraping</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-video-screen-scraping" title="LLM Video Screen-Scraping">LLM Video Screen-Scraping</a></li><li class="file"><a href="https://tds.s-anand.net/#/web-automation-with-playwright" title="Web Automation with Playwright">Web Automation with Playwright</a></li><li class="file"><a href="https://tds.s-anand.net/#/scheduled-scraping-with-github-actions" title="Scheduled Scraping with GitHub Actions">Scheduled Scraping with GitHub Actions</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-emarketer" title="Scraping emarketer.com">Scraping emarketer.com</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-live-sessions" title="Scraping: Live Sessions">Scraping: Live Sessions</a></li></ul></li><li class="open folder level-1"><a href="https://tds.s-anand.net/#/data-preparation" title="5. Data Preparation">5. Data Preparation</a><ul><li class="file"><a href="https://tds.s-anand.net/#/data-cleansing-in-excel" title="Data Cleansing in Excel">Data Cleansing in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-transformation-in-excel" title="Data Transformation in Excel">Data Transformation in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/splitting-text-in-excel" title="Splitting Text in Excel">Splitting Text in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-aggregation-in-excel" title="Data Aggregation in Excel">Data Aggregation in Excel</a></li><li class="active open file"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell" title="Data Preparation in the Shell">Data Preparation in the Shell</a><ul class="app-sub-sidebar"><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=data-preparation-in-the-shell" title="Data Preparation in the Shell">Data Preparation in the Shell</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=download-logs" title="Download logs">Download logs</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=list-files" title="List files">List files</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=uncompress-the-log-file" title="Uncompress the log file">Uncompress the log file</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=preview-the-logs" title="Preview the logs">Preview the logs</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=count-requests" title="Count requests">Count requests</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=extract-the-ip-column" title="Extract the IP column">Extract the <code>IP</code> column</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=find-lines-matching-an-ip" title="Find lines matching an IP">Find lines matching an IP</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=find-bots" title="Find bots">Find bots</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=convert-logs-to-csv" title="Convert logs to CSV">Convert logs to CSV</a></li><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=more-commands" title="More commands">More commands</a></li></ul></li><li class="file"><a href="https://tds.s-anand.net/#/data-preparation-in-the-editor" title="Data Preparation in the Editor">Data Preparation in the Editor</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-preparation-in-duckdb" title="Data Preparation in DuckDB">Data Preparation in DuckDB</a></li><li class="file"><a href="https://tds.s-anand.net/#/cleaning-data-with-openrefine" title="Cleaning Data with OpenRefine">Cleaning Data with OpenRefine</a></li><li class="file"><a href="https://tds.s-anand.net/#/parsing-json" title="Parsing JSON">Parsing JSON</a></li><li class="file"><a href="https://tds.s-anand.net/#/dbt" title="Data Transformation with dbt">Data Transformation with dbt</a></li><li class="file"><a href="https://tds.s-anand.net/#/transforming-images" title="Transforming Images">Transforming Images</a></li><li class="file"><a href="https://tds.s-anand.net/#/extracting-audio-and-transcripts" title="Extracting Audio and Transcripts">Extracting Audio and Transcripts</a><!-- #TODO Stitching together podcasts from snippets using SoX? --></li></ul></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-analysis" title="6. Data Analysis">6. Data Analysis</a><ul><li class="file"><a href="https://tds.s-anand.net/#/correlation-with-excel" title="Correlation with Excel">Correlation with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/regression-with-excel" title="Regression with Excel">Regression with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/forecasting-with-excel" title="Forecasting with Excel">Forecasting with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/outlier-detection-with-excel" title="Outlier Detection with Excel">Outlier Detection with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-python" title="Data Analysis with Python">Data Analysis with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-sql" title="Data Analysis with SQL">Data Analysis with SQL</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-datasette" title="Data Analysis with Datasette">Data Analysis with Datasette</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-duckdb" title="Data Analysis with DuckDB">Data Analysis with DuckDB</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-chatgpt" title="Data Analysis with ChatGPT">Data Analysis with ChatGPT</a></li><li class="file"><a href="https://tds.s-anand.net/#/geospatial-analysis-with-excel" title="Geospatial Analysis with Excel">Geospatial Analysis with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/geospatial-analysis-with-python" title="Geospatial Analysis with Python">Geospatial Analysis with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/geospatial-analysis-with-qgis" title="Geospatial Analysis with QGIS">Geospatial Analysis with QGIS</a></li><li class="file"><a href="https://tds.s-anand.net/#/network-analysis-in-python" title="Network Analysis in Python">Network Analysis in Python</a></li></ul></li><li class="file">Project 2</li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-visualization" title="7. Data Visualization">7. Data Visualization</a><ul><li class="file"><a href="https://tds.s-anand.net/#/visualizing-forecasts-with-excel" title="Visualizing Forecasts with Excel">Visualizing Forecasts with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-animated-data-with-powerpoint" title="Visualizing Animated Data with PowerPoint">Visualizing Animated Data with PowerPoint</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-animated-data-with-flourish" title="Visualizing Animated Data with Flourish">Visualizing Animated Data with Flourish</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-network-data-with-kumu" title="Visualizing Network Data with Kumu">Visualizing Network Data with Kumu</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-charts-with-excel" title="Visualizing Charts with Excel">Visualizing Charts with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-visualization-with-seaborn" title="Data Visualization with Seaborn">Data Visualization with Seaborn</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-visualization-with-chatgpt" title="Data Visualization with ChatGPT">Data Visualization with ChatGPT</a></li><li class="file"><a href="https://tds.s-anand.net/#/actor-network-visualization" title="Actor Network Visualization">Actor Network Visualization</a></li><li class="file"><a href="https://tds.s-anand.net/#/rawgraphs" title="RAWgraphs">RAWgraphs</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-storytelling" title="Data Storytelling">Data Storytelling</a></li><li class="file"><a href="https://tds.s-anand.net/#/narratives-with-llms" title="Narratives with LLMs">Narratives with LLMs</a></li><li class="file"><a href="https://tds.s-anand.net/#/marimo" title="Interactive Notebooks: Marimo">Interactive Notebooks: Marimo</a></li><li class="file"><a href="https://tds.s-anand.net/#/revealjs" title="HTML Slides: RevealJS">HTML Slides: RevealJS</a></li><li class="file"><a href="https://tds.s-anand.net/#/marp" title="Markdown Presentations: Marp">Markdown Presentations: Marp</a></li></ul></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><h2 id="data-preparation-in-the-shell"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=data-preparation-in-the-shell" data-id="data-preparation-in-the-shell" class="anchor"><span>Data Preparation in the Shell</span></a></h2><p><a href="https://youtu.be/XEdy4WK70vU" target="_blank" rel="noopener"><img src="./Data Preparation in the Shell_files/sddefault.webp" data-origin="https://i.ytimg.com/vi_webp/XEdy4WK70vU/sddefault.webp" alt="Data preparation in the shell"></a></p><p>You’ll learn how to use UNIX tools to process and clean data, covering:</p><ul><li><code>curl</code> (or <code>wget</code>) to fetch data from websites.</li><li><code>gzip</code> (or <code>xz</code>) to compress and decompress files.</li><li><code>wc</code> to count lines, words, and characters in text.</li><li><code>head</code> and <code>tail</code> to get the start and end of files.</li><li><code>cut</code> to extract specific columns from text.</li><li><code>uniq</code> to de-duplicate lines.</li><li><code>sort</code> to sort lines.</li><li><code>grep</code> to filter lines containing specific text.</li><li><code>sed</code> to search and replace text.</li><li><code>awk</code> for more complex text processing.</li></ul><p><a href="https://colab.research.google.com/drive/1KSFkQDK0v__XWaAaHKeQuIAwYV0dkTe8" target="_blank" rel="noopener">Data preparation in the shell - Notebook</a></p><p>UNIX has a great set of tools to clean and analyze data.</p><p>This is important because <a href="https://jeroenjanssens.com/dsatcl/chapter-1-introduction#why-data-science-at-the-command-line" target="_blank" rel="noopener">these tools are</a>:</p><ul><li><strong>Agile</strong>: You can quickly explore data and see the results.</li><li><strong>Fast</strong>: They’re written in C. They’re easily parallelizable.</li><li><strong>Popular</strong>: Most systems and languages support shell commands.</li></ul><p>In <a href="https://colab.research.google.com/drive/1KSFkQDK0v__XWaAaHKeQuIAwYV0dkTe8" target="_blank" rel="noopener">this notebook</a>, we’ll explore log files with these shell-based commands.</p><h2 id="download-logs"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=download-logs" data-id="download-logs" class="anchor"><span>Download logs</span></a></h2><p><a href="https://drive.google.com/file/d/1J1ed4iHFAiS1Xq55aP858OEyEMQ-uMnE/view" target="_blank" rel="noopener">This file</a> has Apache web server logs for the site <a href="https://s-anand.net/" target="_blank" rel="noopener">s-anand.net</a> in the month of April 2024.</p><p>You can download files using <code>wget</code> or <code>curl</code>. One of these is usually available by default on most systems.</p><p>We’ll use <code>curl</code> to download the file from the URL <code>https://drive.usercontent.google.com/uc?id=1J1ed4iHFAiS1Xq55aP858OEyEMQ-uMnE&amp;export=download</code></p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># curl has LOTs of options. You won't remember most, but it's fun to geek out.</span>
+!curl <span class="token operator">-</span><span class="token operator">-</span><span class="token builtin">help</span> <span class="token builtin">all</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">Usage: curl [options...] <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">&gt;</span></span>
+     --abstract-unix-socket <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span><span class="token punctuation">&gt;</span></span> Connect via abstract Unix domain socket
+     --alt-svc <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span> <span class="token attr-name">name</span><span class="token punctuation">&gt;</span></span> Enable alt-svc with this cache file
+     --anyauth            Pick any authentication method
+ -a, --append             Append to target file when uploading
+     --aws-sigv4 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">provider1[:</span><span class="token namespace">provider2[:</span><span class="token namespace">region[:</span>service]]]</span><span class="token punctuation">&gt;</span></span> Use AWS V4 signature authentication
+     --basic              Use HTTP Basic Authentication
+     --cacert <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span>      CA certificate to verify peer against
+     --capath <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dir</span><span class="token punctuation">&gt;</span></span>       CA directory to verify peer against
+ -E, --cert <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">certificate[:</span>password]</span><span class="token punctuation">&gt;</span></span> Client certificate file and password
+     --cert-status        Verify the status of the server cert via OCSP-staple
+     --cert-type <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>   Certificate type (DER/PEM/ENG)
+     --ciphers <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list</span> <span class="token attr-name">of</span> <span class="token attr-name">ciphers</span><span class="token punctuation">&gt;</span></span> SSL ciphers to use
+     --compressed         Request compressed response
+     --compressed-ssh     Enable SSH compression
+ -K, --config <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span>      Read config from a file
+     --connect-timeout <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fractional</span> <span class="token attr-name">seconds</span><span class="token punctuation">&gt;</span></span> Maximum time allowed for connection
+     --connect-to <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">HOST1:</span><span class="token namespace">PORT1:</span><span class="token namespace">HOST2:</span>PORT2</span><span class="token punctuation">&gt;</span></span> Connect to host
+ -C, --continue-at <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>offset</span><span class="token punctuation">&gt;</span></span> Resumed transfer offset
+ -b, --cookie <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>data|filename</span><span class="token punctuation">&gt;</span></span> Send cookies from string/file
+ -c, --cookie-jar <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filename</span><span class="token punctuation">&gt;</span></span> Write cookies to <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filename</span><span class="token punctuation">&gt;</span></span> after operation
+     --create-dirs        Create necessary local directory hierarchy
+     --create-file-mode <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mode</span><span class="token punctuation">&gt;</span></span> File mode for created files
+     --crlf               Convert LF to CRLF in upload
+     --crlfile <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span>     Use this CRL list
+     --curves <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>algorithm</span> <span class="token attr-name">list</span><span class="token punctuation">&gt;</span></span> (EC) TLS key exchange algorithm(s) to request
+ -d, --data <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>data</span><span class="token punctuation">&gt;</span></span>        HTTP POST data
+     --data-ascii <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>data</span><span class="token punctuation">&gt;</span></span>  HTTP POST ASCII data
+     --data-binary <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>data</span><span class="token punctuation">&gt;</span></span> HTTP POST binary data
+     --data-raw <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>data</span><span class="token punctuation">&gt;</span></span>    HTTP POST data, '@' allowed
+     --data-urlencode <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>data</span><span class="token punctuation">&gt;</span></span> HTTP POST data url encoded
+     --delegation <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>LEVEL</span><span class="token punctuation">&gt;</span></span> GSS-API delegation permission
+     --digest             Use HTTP Digest Authentication
+ -q, --disable            Disable .curlrc
+     --disable-eprt       Inhibit using EPRT or LPRT
+     --disable-epsv       Inhibit using EPSV
+     --disallow-username-in-url Disallow username in url
+     --dns-interface <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>interface</span><span class="token punctuation">&gt;</span></span> Interface to use for DNS requests
+     --dns-ipv4-addr <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address</span><span class="token punctuation">&gt;</span></span> IPv4 address to use for DNS requests
+     --dns-ipv6-addr <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address</span><span class="token punctuation">&gt;</span></span> IPv6 address to use for DNS requests
+     --dns-servers <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>addresses</span><span class="token punctuation">&gt;</span></span> DNS server addrs to use
+     --doh-cert-status    Verify the status of the DoH server cert via OCSP-staple
+     --doh-insecure       Allow insecure DoH server connections
+     --doh-url <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>URL</span><span class="token punctuation">&gt;</span></span>      Resolve host names over DoH
+ -D, --dump-header <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filename</span><span class="token punctuation">&gt;</span></span> Write the received headers to <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filename</span><span class="token punctuation">&gt;</span></span>
+     --egd-file <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span>    EGD socket path for random data
+     --engine <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>      Crypto engine to use
+     --etag-compare <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span> Pass an ETag from a file as a custom header
+     --etag-save <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span>   Parse ETag from a request and save it to a file
+     --expect100-timeout <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>seconds</span><span class="token punctuation">&gt;</span></span> How long to wait for 100-continue
+ -f, --fail               Fail silently (no output at all) on HTTP errors
+     --fail-early         Fail on first transfer error, do not continue
+     --fail-with-body     Fail on HTTP errors but save the body
+     --false-start        Enable TLS False Start
+ -F, --form &lt;name=content&gt; Specify multipart MIME data
+     --form-escape        Escape multipart form field/file names using backslash
+     --form-string &lt;name=string&gt; Specify multipart MIME data
+     --ftp-account <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>data</span><span class="token punctuation">&gt;</span></span> Account data string
+     --ftp-alternative-to-user <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>command</span><span class="token punctuation">&gt;</span></span> String to replace USER [name]
+     --ftp-create-dirs    Create the remote dirs if not present
+     --ftp-method <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>method</span><span class="token punctuation">&gt;</span></span> Control CWD usage
+     --ftp-pasv           Use PASV/EPSV instead of PORT
+ -P, --ftp-port <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address</span><span class="token punctuation">&gt;</span></span> Use PORT instead of PASV
+     --ftp-pret           Send PRET before PASV
+     --ftp-skip-pasv-ip   Skip the IP address for PASV
+     --ftp-ssl-ccc        Send CCC after authenticating
+     --ftp-ssl-ccc-mode &lt;active/passive&gt; Set CCC mode
+     --ftp-ssl-control    Require SSL/TLS for FTP login, clear for transfer
+ -G, --get                Put the post data in the URL and use GET
+ -g, --globoff            Disable URL sequences and ranges using {} and []
+     --happy-eyeballs-timeout-ms <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>milliseconds</span><span class="token punctuation">&gt;</span></span> Time for IPv6 before trying IPv4
+     --haproxy-protocol   Send HAProxy PROXY protocol v1 header
+ -I, --head               Show document info only
+ -H, --header &lt;header/@file&gt; Pass custom header(s) to server
+ -h, --help <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>category</span><span class="token punctuation">&gt;</span></span>    Get help for commands
+     --hostpubmd5 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>md5</span><span class="token punctuation">&gt;</span></span>   Acceptable MD5 hash of the host public key
+     --hostpubsha256 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sha256</span><span class="token punctuation">&gt;</span></span> Acceptable SHA256 hash of the host public key
+     --hsts <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span> <span class="token attr-name">name</span><span class="token punctuation">&gt;</span></span>   Enable HSTS with this cache file
+     --http0.9            Allow HTTP 0.9 responses
+ -0, --http1.0            Use HTTP 1.0
+     --http1.1            Use HTTP 1.1
+     --http2              Use HTTP 2
+     --http2-prior-knowledge Use HTTP 2 without HTTP/1.1 Upgrade
+     --http3              Use HTTP v3
+     --ignore-content-length Ignore the size of the remote resource
+ -i, --include            Include protocol response headers in the output
+ -k, --insecure           Allow insecure server connections
+     --interface <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>   Use network INTERFACE (or address)
+ -4, --ipv4               Resolve names to IPv4 addresses
+ -6, --ipv6               Resolve names to IPv6 addresses
+ -j, --junk-session-cookies Ignore session cookies read from file
+     --keepalive-time <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>seconds</span><span class="token punctuation">&gt;</span></span> Interval time for keepalive probes
+     --key <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>          Private key file name
+     --key-type <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>    Private key file type (DER/PEM/ENG)
+     --krb <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>level</span><span class="token punctuation">&gt;</span></span>        Enable Kerberos with security <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>level</span><span class="token punctuation">&gt;</span></span>
+     --libcurl <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span>     Dump libcurl equivalent code of this command line
+     --limit-rate <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>speed</span><span class="token punctuation">&gt;</span></span> Limit transfer speed to RATE
+ -l, --list-only          List only mode
+     --local-port &lt;num/range&gt; Force use of RANGE for local port numbers
+ -L, --location           Follow redirects
+     --location-trusted   Like --location, and send auth to other hosts
+     --login-options <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>options</span><span class="token punctuation">&gt;</span></span> Server login options
+     --mail-auth <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address</span><span class="token punctuation">&gt;</span></span> Originator address of the original email
+     --mail-from <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address</span><span class="token punctuation">&gt;</span></span> Mail from this address
+     --mail-rcpt <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address</span><span class="token punctuation">&gt;</span></span> Mail to this address
+     --mail-rcpt-allowfails Allow RCPT TO command to fail for some recipients
+ -M, --manual             Display the full manual
+     --max-filesize <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bytes</span><span class="token punctuation">&gt;</span></span> Maximum file size to download
+     --max-redirs <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>num</span><span class="token punctuation">&gt;</span></span>   Maximum number of redirects allowed
+ -m, --max-time <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fractional</span> <span class="token attr-name">seconds</span><span class="token punctuation">&gt;</span></span> Maximum time allowed for transfer
+     --metalink           Process given URLs as metalink XML file
+     --negotiate          Use HTTP Negotiate (SPNEGO) authentication
+ -n, --netrc              Must read .netrc for user name and password
+     --netrc-file <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filename</span><span class="token punctuation">&gt;</span></span> Specify FILE for netrc
+     --netrc-optional     Use either .netrc or URL
+ -:, --next               Make next URL use its separate set of options
+     --no-alpn            Disable the ALPN TLS extension
+ -N, --no-buffer          Disable buffering of the output stream
+     --no-keepalive       Disable TCP keepalive on the connection
+     --no-npn             Disable the NPN TLS extension
+     --no-progress-meter  Do not show the progress meter
+     --no-sessionid       Disable SSL session-ID reusing
+     --noproxy <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>no-proxy-list</span><span class="token punctuation">&gt;</span></span> List of hosts which do not use proxy
+     --ntlm               Use HTTP NTLM authentication
+     --ntlm-wb            Use HTTP NTLM authentication with winbind
+     --oauth2-bearer <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>token</span><span class="token punctuation">&gt;</span></span> OAuth 2 Bearer Token
+ -o, --output <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span>      Write to file instead of stdout
+     --output-dir <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dir</span><span class="token punctuation">&gt;</span></span>   Directory to save files in
+ -Z, --parallel           Perform transfers in parallel
+     --parallel-immediate Do not wait for multiplexing (with --parallel)
+     --parallel-max <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>num</span><span class="token punctuation">&gt;</span></span> Maximum concurrency for parallel transfers
+     --pass <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>phrase</span><span class="token punctuation">&gt;</span></span>      Pass phrase for the private key
+     --path-as-is         Do not squash .. sequences in URL path
+     --pinnedpubkey <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hashes</span><span class="token punctuation">&gt;</span></span> FILE/HASHES Public key to verify peer against
+     --post301            Do not switch to GET after following a 301
+     --post302            Do not switch to GET after following a 302
+     --post303            Do not switch to GET after following a 303
+     --preproxy [protocol://]host[:port] Use this proxy first
+ -#, --progress-bar       Display transfer progress as a bar
+     --proto <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>protocols</span><span class="token punctuation">&gt;</span></span>  Enable/disable PROTOCOLS
+     --proto-default <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>protocol</span><span class="token punctuation">&gt;</span></span> Use PROTOCOL for any URL missing a scheme
+     --proto-redir <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>protocols</span><span class="token punctuation">&gt;</span></span> Enable/disable PROTOCOLS on redirect
+ -x, --proxy [protocol://]host[:port] Use this proxy
+     --proxy-anyauth      Pick any proxy authentication method
+     --proxy-basic        Use Basic authentication on the proxy
+     --proxy-cacert <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span> CA certificate to verify peer against for proxy
+     --proxy-capath <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dir</span><span class="token punctuation">&gt;</span></span> CA directory to verify peer against for proxy
+     --proxy-cert <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">cert[:</span>passwd]</span><span class="token punctuation">&gt;</span></span> Set client certificate for proxy
+     --proxy-cert-type <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span> Client certificate type for HTTPS proxy
+     --proxy-ciphers <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list</span><span class="token punctuation">&gt;</span></span> SSL ciphers to use for proxy
+     --proxy-crlfile <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span> Set a CRL list for proxy
+     --proxy-digest       Use Digest authentication on the proxy
+     --proxy-header &lt;header/@file&gt; Pass custom header(s) to proxy
+     --proxy-insecure     Do HTTPS proxy connections without verifying the proxy
+     --proxy-key <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>    Private key for HTTPS proxy
+     --proxy-key-type <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span> Private key file type for proxy
+     --proxy-negotiate    Use HTTP Negotiate (SPNEGO) authentication on the proxy
+     --proxy-ntlm         Use NTLM authentication on the proxy
+     --proxy-pass <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>phrase</span><span class="token punctuation">&gt;</span></span> Pass phrase for the private key for HTTPS proxy
+     --proxy-pinnedpubkey <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hashes</span><span class="token punctuation">&gt;</span></span> FILE/HASHES public key to verify proxy with
+     --proxy-service-name <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span> SPNEGO proxy service name
+     --proxy-ssl-allow-beast Allow security flaw for interop for HTTPS proxy
+     --proxy-ssl-auto-client-cert Use auto client certificate for proxy (Schannel)
+     --proxy-tls13-ciphers <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ciphersuite</span> <span class="token attr-name">list</span><span class="token punctuation">&gt;</span></span> TLS 1.3 proxy cipher suites
+     --proxy-tlsauthtype <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span> TLS authentication type for HTTPS proxy
+     --proxy-tlspassword <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">&gt;</span></span> TLS password for HTTPS proxy
+     --proxy-tlsuser <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span> TLS username for HTTPS proxy
+     --proxy-tlsv1        Use TLSv1 for HTTPS proxy
+ -U, --proxy-user <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">user:</span>password</span><span class="token punctuation">&gt;</span></span> Proxy user and password
+     --proxy1.0 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">host[:</span>port]</span><span class="token punctuation">&gt;</span></span> Use HTTP/1.0 proxy on given port
+ -p, --proxytunnel        Operate through an HTTP proxy tunnel (using CONNECT)
+     --pubkey <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>       SSH Public key file name
+ -Q, --quote <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>command</span><span class="token punctuation">&gt;</span></span>    Send command(s) to server before transfer
+     --random-file <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span> File for reading random data from
+ -r, --range <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>range</span><span class="token punctuation">&gt;</span></span>      Retrieve only the bytes within RANGE
+     --raw                Do HTTP "raw"; no transfer decoding
+ -e, --referer <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>URL</span><span class="token punctuation">&gt;</span></span>      Referrer URL
+ -J, --remote-header-name Use the header-provided filename
+ -O, --remote-name        Write output to a file named as the remote file
+     --remote-name-all    Use the remote file name for all URLs
+ -R, --remote-time        Set the remote file's time on the local output
+ -X, --request <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>method</span><span class="token punctuation">&gt;</span></span>   Specify request method to use
+     --request-target <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span><span class="token punctuation">&gt;</span></span> Specify the target for this request
+     --resolve <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">[+]host:</span><span class="token namespace">port:</span>addr[,addr]...</span><span class="token punctuation">&gt;</span></span> Resolve the host+port to this address
+     --retry <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>num</span><span class="token punctuation">&gt;</span></span>        Retry request if transient problems occur
+     --retry-all-errors   Retry all errors (use with --retry)
+     --retry-connrefused  Retry on connection refused (use with --retry)
+     --retry-delay <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>seconds</span><span class="token punctuation">&gt;</span></span> Wait time between retries
+     --retry-max-time <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>seconds</span><span class="token punctuation">&gt;</span></span> Retry only within this period
+     --sasl-authzid <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>identity</span><span class="token punctuation">&gt;</span></span> Identity for SASL PLAIN authentication
+     --sasl-ir            Enable initial response in SASL authentication
+     --service-name <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span> SPNEGO service name
+ -S, --show-error         Show error even when -s is used
+ -s, --silent             Silent mode
+     --socks4 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">host[:</span>port]</span><span class="token punctuation">&gt;</span></span> SOCKS4 proxy on given host + port
+     --socks4a <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">host[:</span>port]</span><span class="token punctuation">&gt;</span></span> SOCKS4a proxy on given host + port
+     --socks5 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">host[:</span>port]</span><span class="token punctuation">&gt;</span></span> SOCKS5 proxy on given host + port
+     --socks5-basic       Enable username/password auth for SOCKS5 proxies
+     --socks5-gssapi      Enable GSS-API auth for SOCKS5 proxies
+     --socks5-gssapi-nec  Compatibility with NEC SOCKS5 server
+     --socks5-gssapi-service <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span> SOCKS5 proxy service name for GSS-API
+     --socks5-hostname <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">host[:</span>port]</span><span class="token punctuation">&gt;</span></span> SOCKS5 proxy, pass host name to proxy
+ -Y, --speed-limit <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>speed</span><span class="token punctuation">&gt;</span></span> Stop transfers slower than this
+ -y, --speed-time <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>seconds</span><span class="token punctuation">&gt;</span></span> Trigger 'speed-limit' abort after this time
+     --ssl                Try SSL/TLS
+     --ssl-allow-beast    Allow security flaw to improve interop
+     --ssl-auto-client-cert Use auto client certificate (Schannel)
+     --ssl-no-revoke      Disable cert revocation checks (Schannel)
+     --ssl-reqd           Require SSL/TLS
+     --ssl-revoke-best-effort Ignore missing/offline cert CRL dist points
+ -2, --sslv2              Use SSLv2
+ -3, --sslv3              Use SSLv3
+     --stderr <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span>      Where to redirect stderr
+     --styled-output      Enable styled output for HTTP headers
+     --suppress-connect-headers Suppress proxy CONNECT response headers
+     --tcp-fastopen       Use TCP Fast Open
+     --tcp-nodelay        Use the TCP_NODELAY option
+ -t, --telnet-option &lt;opt=val&gt; Set telnet option
+     --tftp-blksize <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">&gt;</span></span> Set TFTP BLKSIZE option
+     --tftp-no-options    Do not send any TFTP options
+ -z, --time-cond <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span><span class="token punctuation">&gt;</span></span>   Transfer based on a time condition
+     --tls-max <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VERSION</span><span class="token punctuation">&gt;</span></span>  Set maximum allowed TLS version
+     --tls13-ciphers <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ciphersuite</span> <span class="token attr-name">list</span><span class="token punctuation">&gt;</span></span> TLS 1.3 cipher suites to use
+     --tlsauthtype <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span> TLS authentication type
+     --tlspassword <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">&gt;</span></span> TLS password
+     --tlsuser <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>     TLS user name
+ -1, --tlsv1              Use TLSv1.0 or greater
+     --tlsv1.0            Use TLSv1.0 or greater
+     --tlsv1.1            Use TLSv1.1 or greater
+     --tlsv1.2            Use TLSv1.2 or greater
+     --tlsv1.3            Use TLSv1.3 or greater
+     --tr-encoding        Request compressed transfer encoding
+     --trace <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span>       Write a debug trace to FILE
+     --trace-ascii <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span> Like --trace, but without hex output
+     --trace-time         Add time stamps to trace/verbose output
+     --unix-socket <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span><span class="token punctuation">&gt;</span></span> Connect through this Unix domain socket
+ -T, --upload-file <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span> Transfer local FILE to destination
+     --url <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">&gt;</span></span>          URL to work with
+ -B, --use-ascii          Use ASCII/text transfer
+ -u, --user <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">user:</span>password</span><span class="token punctuation">&gt;</span></span> Server user and password
+ -A, --user-agent <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>  Send User-Agent <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span> to server
+ -v, --verbose            Make the operation more talkative
+ -V, --version            Show version number and quit
+ -w, --write-out <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>format</span><span class="token punctuation">&gt;</span></span> Use output FORMAT after completion
+     --xattr              Store metadata in extended file attributes</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># We're using 3 curl options here:</span>
+<span class="token comment">#   --continue-at - continues the download from where it left off. It won't download if already downloaded</span>
+<span class="token comment">#   --location downloads the file even if the link sends us somewhere else</span>
+<span class="token comment">#   --output FILE saves the downloaded output as</span>
+!curl <span class="token operator">-</span><span class="token operator">-</span><span class="token keyword">continue</span><span class="token operator">-</span>at <span class="token operator">-</span> \
+  <span class="token operator">-</span><span class="token operator">-</span>location \
+  <span class="token operator">-</span><span class="token operator">-</span>output s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span><span class="token punctuation">.</span>gz \
+  https<span class="token punctuation">:</span><span class="token operator">//</span>drive<span class="token punctuation">.</span>usercontent<span class="token punctuation">.</span>google<span class="token punctuation">.</span>com<span class="token operator">/</span>uc?<span class="token builtin">id</span><span class="token operator">=</span>1J1ed4iHFAiS1Xq55aP858OEyEMQ<span class="token operator">-</span>uMnE<span class="token operator">&amp;</span>export<span class="token operator">=</span>download</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 5665k  100 5665k    0     0  3139k      0  0:00:01  0:00:01 --:--:-- 9602k</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><h2 id="list-files"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=list-files" data-id="list-files" class="anchor"><span>List files</span></a></h2><p><code>ls</code> lists files. It too has lots of options.</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python">!ls <span class="token operator">-</span><span class="token operator">-</span><span class="token builtin">help</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">Usage: ls [OPTION]... [FILE]...
+List information about the FILEs (the current directory by default).
+Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -a, --all                  do not ignore entries starting with .
+  -A, --almost-all           do not list implied . and ..
+      --author               with -l, print the author of each file
+  -b, --escape               print C-style escapes for nongraphic characters
+      --block-size=SIZE      with -l, scale sizes by SIZE when printing them;
+                               e.g., '--block-size=M'; see SIZE format below
+  -B, --ignore-backups       do not list implied entries ending with ~
+  -c                         with -lt: sort by, and show, ctime (time of last
+                               modification of file status information);
+                               with -l: show ctime and sort by name;
+                               otherwise: sort by ctime, newest first
+  -C                         list entries by columns
+      --color[=WHEN]         colorize the output; WHEN can be 'always' (default
+                               if omitted), 'auto', or 'never'; more info below
+  -d, --directory            list directories themselves, not their contents
+  -D, --dired                generate output designed for Emacs' dired mode
+  -f                         do not sort, enable -aU, disable -ls --color
+  -F, --classify             append indicator (one of */=&gt;@|) to entries
+      --file-type            likewise, except do not append '*'
+      --format=WORD          across -x, commas -m, horizontal -x, long -l,
+                               single-column -1, verbose -l, vertical -C
+      --full-time            like -l --time-style=full-iso
+  -g                         like -l, but do not list owner
+      --group-directories-first
+                             group directories before files;
+                               can be augmented with a --sort option, but any
+                               use of --sort=none (-U) disables grouping
+  -G, --no-group             in a long listing, don't print group names
+  -h, --human-readable       with -l and -s, print sizes like 1K 234M 2G etc.
+      --si                   likewise, but use powers of 1000 not 1024
+  -H, --dereference-command-line
+                             follow symbolic links listed on the command line
+      --dereference-command-line-symlink-to-dir
+                             follow each command line symbolic link
+                               that points to a directory
+      --hide=PATTERN         do not list implied entries matching shell PATTERN
+                               (overridden by -a or -A)
+      --hyperlink[=WHEN]     hyperlink file names; WHEN can be 'always'
+                               (default if omitted), 'auto', or 'never'
+      --indicator-style=WORD  append indicator with style WORD to entry names:
+                               none (default), slash (-p),
+                               file-type (--file-type), classify (-F)
+  -i, --inode                print the index number of each file
+  -I, --ignore=PATTERN       do not list implied entries matching shell PATTERN
+  -k, --kibibytes            default to 1024-byte blocks for disk usage;
+                               used only with -s and per directory totals
+  -l                         use a long listing format
+  -L, --dereference          when showing file information for a symbolic
+                               link, show information for the file the link
+                               references rather than for the link itself
+  -m                         fill width with a comma separated list of entries
+  -n, --numeric-uid-gid      like -l, but list numeric user and group IDs
+  -N, --literal              print entry names without quoting
+  -o                         like -l, but do not list group information
+  -p, --indicator-style=slash
+                             append / indicator to directories
+  -q, --hide-control-chars   print ? instead of nongraphic characters
+      --show-control-chars   show nongraphic characters as-is (the default,
+                               unless program is 'ls' and output is a terminal)
+  -Q, --quote-name           enclose entry names in double quotes
+      --quoting-style=WORD   use quoting style WORD for entry names:
+                               literal, locale, shell, shell-always,
+                               shell-escape, shell-escape-always, c, escape
+                               (overrides QUOTING_STYLE environment variable)
+  -r, --reverse              reverse order while sorting
+  -R, --recursive            list subdirectories recursively
+  -s, --size                 print the allocated size of each file, in blocks
+  -S                         sort by file size, largest first
+      --sort=WORD            sort by WORD instead of name: none (-U), size (-S),
+                               time (-t), version (-v), extension (-X)
+      --time=WORD            change the default of using modification times;
+                               access time (-u): atime, access, use;
+                               change time (-c): ctime, status;
+                               birth time: birth, creation;
+                             with -l, WORD determines which time to show;
+                             with --sort=time, sort by WORD (newest first)
+      --time-style=TIME_STYLE  time/date format with -l; see TIME_STYLE below
+  -t                         sort by time, newest first; see --time
+  -T, --tabsize=COLS         assume tab stops at each COLS instead of 8
+  -u                         with -lt: sort by, and show, access time;
+                               with -l: show access time and sort by name;
+                               otherwise: sort by access time, newest first
+  -U                         do not sort; list entries in directory order
+  -v                         natural sort of (version) numbers within text
+  -w, --width=COLS           set output width to COLS.  0 means no limit
+  -x                         list entries by lines instead of by columns
+  -X                         sort alphabetically by entry extension
+  -Z, --context              print any security context of each file
+  -1                         list one file per line.  Avoid '\n' with -q or -b
+      --help     display this help and exit
+      --version  output version information and exit
+
+The SIZE argument is an integer and optional unit (example: 10K is 10*1024).
+Units are K,M,G,T,P,E,Z,Y (powers of 1024) or KB,MB,... (powers of 1000).
+Binary prefixes can be used, too: KiB=K, MiB=M, and so on.
+
+The TIME_STYLE argument can be full-iso, long-iso, iso, locale, or +FORMAT.
+FORMAT is interpreted like in date(1).  If FORMAT is FORMAT1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>newline</span><span class="token punctuation">&gt;</span></span>FORMAT2,
+then FORMAT1 applies to non-recent files and FORMAT2 to recent files.
+TIME_STYLE prefixed with 'posix-' takes effect only outside the POSIX locale.
+Also the TIME_STYLE environment variable sets the default style to use.
+
+Using color to distinguish file types is disabled both by default and
+with --color=never.  With --color=auto, ls emits color codes only when
+standard output is connected to a terminal.  The LS_COLORS environment
+variable can change the settings.  Use the dircolors command to set it.
+
+Exit status:
+ 0  if OK,
+ 1  if minor problems (e.g., cannot access subdirectory),
+ 2  if serious trouble (e.g., cannot access command-line argument).
+
+GNU coreutils online help: &lt;https://www.gnu.org/software/coreutils/&gt;
+Full documentation &lt;https://www.gnu.org/software/coreutils/ls&gt;
+or available locally via: info '(coreutils) ls invocation'</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># By default, it just lists all file names</span>
+!ls</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">sample_data  s-anand.net-Apr-2024.gz</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># If we want to see the size of the file, use `-l` for the long-listing format</span>
+!ls <span class="token operator">-</span>l</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">total 5672
+drwxr-xr-x 1 root root    4096 Jun  6 14:21 sample_data
+-rw-r--r-- 1 root root 5801198 Jun  9 05:18 s-anand.net-Apr-2024.gz</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><h2 id="uncompress-the-log-file"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=uncompress-the-log-file" data-id="uncompress-the-log-file" class="anchor"><span>Uncompress the log file</span></a></h2><p><code>gzip</code> is the most popular compression format on the web. It’s fast and pretty good. (<code>xz</code> is much better but slower.)</p><p>Since the file has a <code>.gz</code> extension, we know it’s compressed using <code>gzip</code>. We can use <code>gzip -d FILE.gz</code> to decompress the file. It’ll replace <code>FILE.gz</code> with <code>FILE</code>.</p><p>(Compression works the opposite way. <code>gzip FILE</code> replaces <code>FILE</code> with <code>FILE.gz</code>)<a href="https:" target="_blank" rel="noopener">link text</a></p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># gzip -d is the same as gunzip. They both decompress a GZIP-ed file</span>
+!gzip <span class="token operator">-</span>d s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span><span class="token punctuation">.</span>gz</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Let's list the files and see the size</span>
+!ls <span class="token operator">-</span>l</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">total 50832
+drwxr-xr-x 1 root root     4096 Jun  6 14:21 sample_data
+-rw-r--r-- 1 root root 52044491 Jun  9 05:18 s-anand.net-Apr-2024</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>In this case, a file that was ~5.8MiB became ~52MiB, roughly 10 times larger. Clearly, it’s more efficient to store and transport compressed files – especitally if they’re plain text.</p><h2 id="preview-the-logs"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=preview-the-logs" data-id="preview-the-logs" class="anchor"><span>Preview the logs</span></a></h2><p>To see the first few lines or the last few lines of a text file, use <code>head</code> or <code>tail</code><em>italicized text</em></p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Show the first 5 lines</span>
+!head <span class="token operator">-</span>n <span class="token number">5</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">17.241.219.11 - - [31/Mar/2024:07:16:50 -0500] "GET /hindi/Hari_Puttar_-_A_Comedy_of_Terrors~Meri_Yaadon_Mein_Hai_Tu HTTP/1.1" 200 2839 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15 (Applebot/0.1; +http://www.apple.com/go/applebot)" www.s-anand.net 192.254.190.216
+17.241.75.154 - - [31/Mar/2024:07:17:40 -0500] "GET /hindimp3/~AAN_MILO_SAJNA%3DRANG_RANG_KE_PHOOL_KHILE HTTP/1.1" 200 2786 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15 (Applebot/0.1; +http://www.apple.com/go/applebot)" www.s-anand.net 192.254.190.216
+101.44.248.120 - - [31/Mar/2024:07:19:03 -0500] "GET /hindi/BRAHMCHARI HTTP/1.1" 200 2757 "http://www.s-anand.net/hindi/BRAHMCHARI" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" www.s-anand.net 192.254.190.216
+17.241.227.200 - - [31/Mar/2024:07:19:31 -0500] "GET /malayalam/Kaarunyam~Valampiri_Sangil HTTP/1.1" 200 2749 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15 (Applebot/0.1; +http://www.apple.com/go/applebot)" www.s-anand.net 192.254.190.216
+37.59.21.100 - - [31/Mar/2024:07:19:41 -0500] "GET /blog/matching-misspelt-tamil-movie-names/feed/ HTTP/1.1" 200 1105 "-" "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36" www.s-anand.net 192.254.190.216</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Show the last 5 files</span>
+!tail <span class="token operator">-</span>n <span class="token number">5</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">47.128.125.180 - - [30/Apr/2024:07:07:47 -0500] "GET /tamil/Subramaniyapuram HTTP/1.1" 406 226 "-" "Mozilla/5.0 (compatible; Bytespider; spider-feedback@bytedance.com) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.0.0 Safari/537.36" www.s-anand.net 192.254.190.216
+37.59.21.100 - - [30/Apr/2024:07:10:27 -0500] "GET /blog/bollywood-actress-jigsaw-quiz/feed/ HTTP/1.1" 200 1072 "-" "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36" www.s-anand.net 192.254.190.216
+40.77.167.48 - - [30/Apr/2024:07:11:10 -0500] "GET /tamilmp3 HTTP/1.1" 200 4157 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36" www.s-anand.net 192.254.190.216
+52.167.144.19 - - [30/Apr/2024:07:11:15 -0500] "GET /malayalam/Ayirathil%20Oruvan HTTP/1.1" 403 450 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36" www.s-anand.net 192.254.190.216
+37.59.21.100 - - [30/Apr/2024:07:11:31 -0500] "GET /blog/2003-mumbai-bloggers-meet-photos/feed/ HTTP/1.1" 200 686 "-" "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36" www.s-anand.net 192.254.190.216</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>Clearly, the data is from around 31 Mar 2024 a bit after 7 am EST (GMT-5) until 30 Apr 2024, a bit after 7 am EST.</p><p>Each line is an Apache log record. It has a lot of data. Some are clear. For example, taking the last row:</p><ul><li><code>37.59.21.100</code> is the IP address that made a request. That’s from <a href="https://www.whois.com/whois/37.59.21.100" target="_blank" rel="noopener">OVH</a> - a French cloud provider. Maybe a bot.</li><li><code>[30/Apr/2024:07:11:31 -0500]</code> is the time of the request</li><li><code>"GET /blog/2003-mumbai-bloggers-meet-photos/feed/ HTTP/1.1"</code> is the request made to <a href="https://s-anand.net/blog/2003-mumbai-bloggers-meet-photos/feed/" target="_blank" rel="noopener">this page</a></li><li><code>200</code> is the HTTP reponse status code, indicating that all’s well</li><li><code>686</code> bytes was the size of the response</li><li><code>"Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36"</code> is the user agent. That’s Chrome 30 – a really old versio of Chrome on Linux. Very likely a bot.</li></ul><h2 id="count-requests"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=count-requests" data-id="count-requests" class="anchor"><span>Count requests</span></a></h2><p><code>wc</code> counts the number of lines, words, and characters in a file. The number of lines is most often used with data.</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python">!wc s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">  208539  4194545 52044491 s-anand.net-Apr-2024</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>So, in Apr 2024, there were ~208K requests to the site. Useful to know.</p><p>I wonder: <strong>Who is sending most of these requests?</strong></p><p>Let’s extract the IP addresses and count them.</p><h2 id="extract-the-ip-column"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=extract-the-ip-column" data-id="extract-the-ip-column" class="anchor"><span>Extract the <code>IP</code> column</span></a></h2><p>We’ll use <code>cut</code> to cut the first column. It has 2 options that we’ll use.</p><p><code>--delimiter</code> is the character that splits fields. In the log file, it’s a space. (We’ll confirm this shortly.)
+<code>--fields</code> picks the field to cut. We want field 1 (IP address)</p><p>Let’s preview this:</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Preview just the IP addresses from the logs</span>
+!cut <span class="token operator">-</span><span class="token operator">-</span>delimiter <span class="token string">" "</span> <span class="token operator">-</span><span class="token operator">-</span>fields <span class="token number">1</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">|</span> head <span class="token operator">-</span>n <span class="token number">5</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">17.241.219.11
+17.241.75.154
+101.44.248.120
+17.241.227.200
+37.59.21.100</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>We used the <code>|</code> operator. That passes the output to the next command, <code>head -n 5</code>, and gives us first 5 lines. This is called <strong>piping</strong> and is the equivalent of calling a function inside another in programming languages.</p><p>We’ll use <code>sort</code> to sort these IP addresses. That puts the same IP addresses next to each other.</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Preview the SORTED IP addresses from the logs</span>
+!cut <span class="token operator">-</span><span class="token operator">-</span>delimiter <span class="token string">" "</span> <span class="token operator">-</span><span class="token operator">-</span>fields <span class="token number">1</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">|</span> sort <span class="token operator">|</span> head <span class="token operator">-</span>n <span class="token number">5</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">100.20.65.50
+100.43.111.139
+101.100.145.51
+101.115.156.11
+101.115.205.68</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>There are no duplicates there… maybe we need to go a bit further? Let’s check the top 25 lines.</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Preview the SORTED IP addresses from the logs</span>
+!cut <span class="token operator">-</span><span class="token operator">-</span>delimiter <span class="token string">" "</span> <span class="token operator">-</span><span class="token operator">-</span>fields <span class="token number">1</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">|</span> sort <span class="token operator">|</span> head <span class="token operator">-</span>n <span class="token number">25</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">100.20.65.50
+100.43.111.139
+101.100.145.51
+101.115.156.11
+101.115.205.68
+101.126.25.225
+101.132.248.41
+101.166.40.221
+101.166.6.221
+101.183.40.167
+101.185.221.147
+101.188.225.246
+101.200.218.166
+101.201.66.35
+101.2.187.83
+101.2.187.83
+101.2.187.83
+101.2.187.83
+101.2.187.83
+101.2.187.83
+101.2.187.83
+101.44.160.158
+101.44.160.158
+101.44.160.177
+101.44.160.177</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>OK, there are some duplicates. Good to know.</p><p>We’ll use <code>uniq</code> to count the unique IP addresses. It has a <code>--count</code> option that displays the number of unique values.</p><p><strong>NOTE</strong>: <code>uniq</code> works ONLY on sorted files. You NEED to <code>sort</code> first.</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python">!cut <span class="token operator">-</span><span class="token operator">-</span>delimiter <span class="token string">" "</span> <span class="token operator">-</span><span class="token operator">-</span>fields <span class="token number">1</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">|</span> sort <span class="token operator">|</span> uniq <span class="token operator">-</span><span class="token operator">-</span>count <span class="token operator">|</span> head <span class="token operator">-</span>n <span class="token number">25</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">      1 100.20.65.50
+      1 100.43.111.139
+      1 101.100.145.51
+      1 101.115.156.11
+      1 101.115.205.68
+      1 101.126.25.225
+      1 101.132.248.41
+      1 101.166.40.221
+      1 101.166.6.221
+      1 101.183.40.167
+      1 101.185.221.147
+      1 101.188.225.246
+      1 101.200.218.166
+      1 101.201.66.35
+      7 101.2.187.83
+      2 101.44.160.158
+      2 101.44.160.177
+      2 101.44.160.189
+      3 101.44.160.20
+      2 101.44.160.41
+      1 101.44.161.208
+      1 101.44.161.71
+      3 101.44.161.77
+      2 101.44.161.93
+      2 101.44.162.166</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>That’s useful. <a href="https://www.whois.com/whois/101.2.187.83" target="_blank" rel="noopener">101.2.187.83</a> from Colombo visited 7 times.</p><p>But I’d like to know who visited the MOST. So let’s <code>sort</code> it further.</p><p><code>sort</code> has an option <code>--key 1n</code> that sorts by field <code>1</code> – the count of IP addresses in this case. The <code>n</code> indicates that it’s a numeric sort (so 11 appears AFTER 2).</p><p>Also, we’ll use <code>tail</code> instead of <code>head</code> to get the highest entries.</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Show the top 5 IP addresses by visits</span>
+!cut <span class="token operator">-</span><span class="token operator">-</span>delimiter <span class="token string">" "</span> <span class="token operator">-</span><span class="token operator">-</span>fields <span class="token number">1</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">|</span> sort <span class="token operator">|</span> uniq <span class="token operator">-</span><span class="token operator">-</span>count <span class="token operator">|</span> sort <span class="token operator">-</span><span class="token operator">-</span>key 1n <span class="token operator">|</span> tail <span class="token operator">-</span>n <span class="token number">5</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">   2560 66.249.70.6
+   3010 148.251.241.12
+   4245 35.86.164.73
+   7800 37.59.21.100
+ 101255 136.243.228.193</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>WOW! <a href="https://www.whois.com/whois/136.243.228.193" target="_blank" rel="noopener">136.243.228.193</a> from Dataforseo, Ukraine, sent roughly HALF of ALL the requests!</p><p>I wonder if we can figure out what User Agent they send. Is it something that identifies itself as a bot of some kind?</p><h2 id="find-lines-matching-an-ip"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=find-lines-matching-an-ip" data-id="find-lines-matching-an-ip" class="anchor"><span>Find lines matching an IP</span></a></h2><p><code>grep</code> searches for text in files. It uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions" target="_blank" rel="noopener">Regular Expressions</a> which are a powerful set of wildcards.</p><p>💡 TIP: You <strong>MUST</strong> learn regular expressions. They’re very helpful.</p><p>Here, we’ll search for all lines BEGINNING with 136.243.228.193 and having a space after that. That’s <code>"^136.243.228.193 "</code>. The <code>^</code> at the beginning matches the start of a line.</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Preview lines that begin with 136.243.228.193</span>
+!grep <span class="token string">"^136.243.228.193 "</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">|</span> head <span class="token operator">-</span>n <span class="token number">5</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">136.243.228.193 - - [31/Mar/2024:11:27:43 -0500] "GET /kannadamp3 HTTP/1.1" 200 4162 "-" "Mozilla/5.0 (compatible; DataForSeoBot/1.0; +https://dataforseo.com/dataforseo-bot)" www.s-anand.net 192.254.190.216
+136.243.228.193 - - [31/Mar/2024:11:31:07 -0500] "GET /kannadamp3 HTTP/1.1" 200 4162 "-" "Mozilla/5.0 (compatible; DataForSeoBot/1.0; +https://dataforseo.com/dataforseo-bot)" www.s-anand.net 192.254.190.216
+136.243.228.193 - - [03/Apr/2024:17:46:42 -0500] "GET /robots.txt HTTP/1.1" 200 195 "-" "Mozilla/5.0 (compatible; DataForSeoBot/1.0; +https://dataforseo.com/dataforseo-bot)" www.s-anand.net 192.254.190.216
+136.243.228.193 - - [06/Apr/2024:02:58:43 -0500] "GET /Statistically_improbable_phrases.html HTTP/1.1" 301 - "-" "Mozilla/5.0 (compatible; DataForSeoBot/1.0; +https://dataforseo.com/dataforseo-bot)" www.s-anand.net 192.254.190.216
+136.243.228.193 - - [08/Apr/2024:22:38:25 -0500] "GET /robots.txt HTTP/1.1" 200 195 "-" "Mozilla/5.0 (compatible; DataForSeoBot/1.0; +https://dataforseo.com/dataforseo-bot)" www.s-anand.net 192.254.190.216</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>These requests have clearly identified themselves as <code>DataForSeoBot/1.0</code>, which is helpful. It also seems to be crawling <code>robots.txt</code> to check if it’s allowed to crawl the site, which is polite.</p><p>Let’s look at the second IP address: <a href="https://www.whois.com/whois/37.59.21.100" target="_blank" rel="noopener">37.59.21.100</a>. That seems to be from OVH, a French cloud hosting provider. Is that a bot, too?</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Preview lines that begin with 37.59.21.100</span>
+!grep <span class="token string">"^37.59.21.100 "</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">|</span> head <span class="token operator">-</span>n <span class="token number">5</span></code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">37.59.21.100 - - [31/Mar/2024:07:19:41 -0500] "GET /blog/matching-misspelt-tamil-movie-names/feed/ HTTP/1.1" 200 1105 "-" "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36" www.s-anand.net 192.254.190.216
+37.59.21.100 - - [31/Mar/2024:07:19:53 -0500] "GET /blog/hindi-songs-online/feed/ HTTP/1.1" 200 1382 "-" "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36" www.s-anand.net 192.254.190.216
+37.59.21.100 - - [31/Mar/2024:07:24:26 -0500] "GET /blog/check-your-mobile-phones-serial-number/feed/ HTTP/1.1" 200 1572 "-" "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36" www.s-anand.net 192.254.190.216
+37.59.21.100 - - [31/Mar/2024:07:33:10 -0500] "GET /blog/classical-ilayaraja-2/feed/ HTTP/1.1" 200 1286 "-" "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36" www.s-anand.net 192.254.190.216
+37.59.21.100 - - [31/Mar/2024:07:36:33 -0500] "GET /blog/correlating-subjects/feed/ HTTP/1.1" 200 2257 "-" "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36" www.s-anand.net 192.254.190.216</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>Looking at the user agent, <code>Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.66 Safari/537.36</code>, it looks like Chrome 30 – a very old version.</p><p>Personally, I believe it’s more likely to be a bot than a French human so interested in my website that they made over 250 requests <em>every day</em>.</p><h2 id="find-bots"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=find-bots" data-id="find-bots" class="anchor"><span>Find bots</span></a></h2><p>But, I’m curious. What are the user agents that DO identify themselves as bots? Let’s use <code>grep</code> to find all words that match bot.</p><p><code>grep --only-matching</code> will show only the matches, not the entire line.</p><p>The regular expression <code>'\S*bot\S*'</code> (which ChatGPT generated) finds all words that have bot.</p><ul><li><code>\S</code> matches non-space characters</li><li><code>\S*</code> matches 0 or more non-space characters</li></ul><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Find all words with `bot` in it</span>
+!grep <span class="token operator">-</span><span class="token operator">-</span>only<span class="token operator">-</span>matching <span class="token string">'\b\w*bot\w*\b'</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">|</span> head</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">Applebot
+applebot
+Applebot
+applebot
+Applebot
+applebot
+Applebot
+applebot
+Applebot
+applebot</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Count frequency of all words with `bot` in it and show the top 10</span>
+!grep <span class="token operator">-</span><span class="token operator">-</span>only<span class="token operator">-</span>matching <span class="token string">'\S*bot\S*'</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">|</span> sort <span class="token operator">|</span> uniq <span class="token operator">-</span><span class="token operator">-</span>count <span class="token operator">|</span> sort <span class="token operator">-</span><span class="token operator">-</span>key 1n <span class="token operator">|</span> tail</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">   4134 PetalBot;+https://webmaster.petalsearch.com/site/petalbot)"
+   4307 /robots.txt
+   5664 bingbot/2.0;
+   5664 +http://www.bing.com/bingbot.htm)
+   8771 +claudebot@anthropic.com)"
+   8827 +http://www.google.com/bot.html)"
+   8830 Googlebot/2.1;
+  13798 (Applebot/0.1;
+  13798 +http://www.apple.com/go/applebot)"
+ 101262 +https://dataforseo.com/dataforseo-bot)"</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>That gives me a rough sense of who’s crawling my site.</p><ol><li><a href="https://dataforseo.com/" target="_blank" rel="noopener">DataForSEO</a></li><li><a href="https://www.apple.com/" target="_blank" rel="noopener">Apple</a></li><li><a href="https://www.google.com/" target="_blank" rel="noopener">Google</a></li><li><a href="https://www.anthropic.com/" target="_blank" rel="noopener">Anthropic</a></li><li><a href="https://www.bing.com/" target="_blank" rel="noopener">Bing</a></li><li><a href="https://aspiegel.com/petalbot" target="_blank" rel="noopener">PetalBot</a></li></ol><h2 id="convert-logs-to-csv"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=convert-logs-to-csv" data-id="convert-logs-to-csv" class="anchor"><span>Convert logs to CSV</span></a></h2><p>This file is <em>almost</em> a CSV file separated by spaces instead of commas.</p><p>The main problem is the date. Instead of <code>[31/Mar/2024:11:27:43 -0500]</code> it should have been <code>"31/Mar/2024:11:27:43 -0500"</code></p><p>We’ll use <code>sed</code> (stream editor) to replace the characters. <code>sed</code> is like <code>grep</code> but lets you replace, not just search.</p><p>(Actually, <code>sed</code> can do a lot more. It’s a full-fledged editor. You can insert, delete, edit, etc. programmatically. In fact, <code>sed</code> has truly remarkable features that this paragraph is too small to contain.)</p><p>The regular expression we will use is <code>\[\([^]]*\)\]</code>. The way this works is:</p><ul><li><code>\[</code>: Match the opening square bracket.</li><li><code>\([^]]*\)</code>: Capture everything inside the square brackets (non-greedy match for any character except <code>]</code>).</li><li><code>\]</code>: Match the closing square bracket.</li></ul><p>BTW, I didn’t create this. <a href="https://chatgpt.com/share/7f14e9d2-15ec-4562-b263-61547d2230f3" target="_blank" rel="noopener">ChatGPT did</a>.</p><p><code>sed "s/abc/xyz/" FILE</code> replaces <code>abc</code> with <code>xyz</code> in the file. We can use the regular expression above for the search and <code>"\1"</code> for the value – it inserts captured group enclosed in double quotes.</p><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># Replace [datetime] etc. with "datetime" and save as log.csv</span>
+!sed <span class="token string">'s/\[\([^]]*\)\]/"\1"/'</span> s<span class="token operator">-</span>anand<span class="token punctuation">.</span>net<span class="token operator">-</span>Apr<span class="token operator">-</span><span class="token number">2024</span> <span class="token operator">&gt;</span> log<span class="token punctuation">.</span>csv</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="python" class="language-python"><code class="lang-python language-python"><span class="token comment"># We should now have a log.csv that's roughly the same size as the original file.</span>
+!ls <span class="token operator">-</span>l</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><pre v-pre="" data-lang="markup" class="language-markup"><code class="lang-markup language-markup">total 101660
+-rw-r--r-- 1 root root 52044491 Jun  9 05:19 log.csv
+drwxr-xr-x 1 root root     4096 Jun  6 14:21 sample_data
+-rw-r--r-- 1 root root 52044491 Jun  9 05:18 s-anand.net-Apr-2024</code><button class="docsify-copy-code-button"><span class="label">Copy to clipboard</span><span class="error" aria-hidden="hidden">Error</span><span class="success" aria-hidden="hidden">Copied</span><span aria-live="polite"></span></button></pre><p>You can download this <code>log.csv</code> and open it in Excel as a CSV file with space as the delimiter.</p><p>But when I did that, I faced another problem. Some of the lines had extra columns.</p><p>That’s because the “User Agent” values sometimes contain a quote. CSV files are supposed to escape quotes with <code>""</code> – two double quotes. But Apache uses <code>\"</code> instead.</p><p>I’ll leave it as an exercise for you to fix that.</p><h2 id="more-commands"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell?id=more-commands" data-id="more-commands" class="anchor"><span>More commands</span></a></h2><p>We’ve covered the commands most often used to process data before analysis.</p><p>Here are a few more that you’ll find useful.</p><ul><li><code>cat</code> concatenates multiple files. You can join multiple log files with this, for example</li><li><code>awk</code> is almost a full-fledged programming interface. It’s often used for summing up values</li><li><code>less</code> lets you open and read files, scrolling through it</li></ul><p>You can read the book <a href="https://jeroenjanssens.com/dsatcl/" target="_blank" rel="noopener">Data Science at the Command Line</a> for more tools and examples.</p><div class="docsify-pagination-container">
+        <div class="pagination-item pagination-item--previous">
+          <a href="https://tds.s-anand.net/#/data-aggregation-in-excel">
+            <div class="pagination-item-label">
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="8,2 2,8 8,14"></polyline>
+              </svg>
+              <span>Previous</span>
+            </div>
+            <div class="pagination-item-title">Data Aggregation in Excel</div>
+      <div class="pagination-item-subtitle"></div></a>
+        </div>
+      
+        <div class="pagination-item pagination-item--next">
+          <a href="https://tds.s-anand.net/#/data-preparation-in-the-editor">
+            <div class="pagination-item-label">
+              <span>Next</span>
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="2,2 8,8 2,14"></polyline>
+              </svg>
+            </div>
+            <div class="pagination-item-title">Data Preparation in the Editor</div>
+      <div class="pagination-item-subtitle"></div></a>
+        </div>
+      </div></article></section></main>
+  <script>
+    window.$docsify = {
+      name: 'Tools in Data Science',
+      subMaxLevel: 2,
+      themeColor: '#dc3545',
+      loadSidebar: true,
+      sidebarDisplayLevel: 0,
+      pagination: {
+        previousText: 'Previous',
+        nextText: 'Next',
+        crossChapter: true,
+        crossChapterText: true
+      },
+    };
+
+  </script>
+  <script src="./Data Preparation in the Shell_files/docsify@4"></script>
+  <script src="./Data Preparation in the Shell_files/search.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/zoom-image.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/docsify-pagination.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/docsify-themeable.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/docsify-copy-code.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/docsify-sidebar-collapse.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/prism-bash.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/prism-python.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/prism-sql.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/prism-yaml.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/prism-json.min.js.download"></script>
+  <script src="./Data Preparation in the Shell_files/prism-markdown.min.js.download"></script>
+
+
+
+<div class="progress" style="opacity: 0; width: 0%;"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>

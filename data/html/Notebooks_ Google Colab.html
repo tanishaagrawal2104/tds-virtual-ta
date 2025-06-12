@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)https://tds.s-anand.net/#/colab -->
+<html lang="en" class="themeable"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+  <title>Notebooks: Google Colab</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/gramener/assets/main/straive-favicon.svg">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="./Notebooks_ Google Colab_files/theme-simple-dark.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: light)" href="./Notebooks_ Google Colab_files/theme-simple.css">
+  <style>
+    /* Add a YouTube icon on top of all YouTube links with images */
+    a[href*="youtu"]:has(img[src*="ytimg"]) {
+      position: relative;
+      display: inline-block;
+    }
+
+    a[href*="youtu"]:has(img[src*="ytimg"])::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100px;
+      height: 100px;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-youtube" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2z"/><path d="M6.4 5.209v4.818l4.157-2.408z" fill="white"/></svg>') no-repeat center center;
+      background-size: contain;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+  </style>
+<style type="text/css">.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}</style><style type="text/css">.docsify-pagination-container{display:flex;flex-wrap:wrap;justify-content:space-between;overflow:hidden;margin:5em 0 1em;border-top:1px solid rgba(0,0,0,.07)}.pagination-item{margin-top:2.5em}.pagination-item a,.pagination-item a:hover{text-decoration:none}.pagination-item a{color:currentColor}.pagination-item a:hover .pagination-item-title{text-decoration:underline}.pagination-item:not(:last-child) a .pagination-item-label,.pagination-item:not(:last-child) a .pagination-item-subtitle,.pagination-item:not(:last-child) a .pagination-item-title{opacity:.3;transition:all .2s}.pagination-item:last-child .pagination-item-label,.pagination-item:not(:last-child) a:hover .pagination-item-label{opacity:.6}.pagination-item:not(:last-child) a:hover .pagination-item-title{opacity:1}.pagination-item-label{font-size:.8em}.pagination-item-label>*{line-height:1;vertical-align:middle}.pagination-item-label svg{height:.8em;width:auto;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1px}.pagination-item--next{margin-left:auto;text-align:right}.pagination-item--next svg{margin-left:.5em}.pagination-item--previous svg{margin-right:.5em}.pagination-item-title{font-size:1.6em}.pagination-item-subtitle{text-transform:uppercase;opacity:.3}</style><style type="text/css">.docsify-copy-code-button,.docsify-copy-code-button>span{cursor:pointer;transition:all .25s ease}.docsify-copy-code-button{background:grey;background:var(--theme-color,grey);border:0;border-radius:0;color:#fff;font-size:1em;opacity:0;outline:0;overflow:visible;padding:.65em .8em;position:absolute;right:0;top:0;z-index:1}.docsify-copy-code-button>span{background:inherit;border-radius:3px;pointer-events:none}.docsify-copy-code-button>.error,.docsify-copy-code-button>.success{font-size:.825em;opacity:0;padding:.5em .65em;position:absolute;right:0;top:50%;transform:translateY(-50%);z-index:-100}.docsify-copy-code-button.error>.error,.docsify-copy-code-button.success>.success{opacity:1;right:100%;transform:translate(-25%,-50%)}.docsify-copy-code-button:focus,pre:hover .docsify-copy-code-button{opacity:1}.docsify-copy-code-button>[aria-live]{height:1px;left:-10000px;overflow:hidden;position:absolute;top:auto;width:1px}</style><style type="text/css">.sidebar-nav > ul > li ul {
+  display: none;
+}
+
+.app-sub-sidebar {
+  display: none;
+}
+
+.app-sub-sidebar.open {
+  display: block;
+}
+
+.sidebar-nav .open > ul:not(.app-sub-sidebar),
+.sidebar-nav .active:not(.collapse) > ul {
+  display: block;
+}
+
+/* 抖动 */
+.sidebar-nav li.open:not(.collapse) > ul {
+  display: block;
+}
+
+.active + ul.app-sub-sidebar {
+  display: block;
+}
+</style><style type="text/css">@media screen and (max-width: 768px) {
+  /* 移动端适配 */
+  .markdown-section {
+    max-width: none;
+    padding: 16px;
+  }
+  /* 改变原来按钮热区大小 */
+  .sidebar-toggle {
+    padding: 0 0 10px 10px;
+  }
+  /* my pin */
+  .sidebar-pin {
+    appearance: none;
+    outline: none;
+    position: fixed;
+    bottom: 0;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+  }
+}
+</style><style>:root{--theme-color: #dc3545;}</style><style>
+.sidebar {
+  padding-top: 0;
+}
+
+.search {
+  margin-bottom: 20px;
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.search .input-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.search .results-panel {
+  display: none;
+}
+
+.search .results-panel.show {
+  display: block;
+}
+
+.search input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 0.6em 7px;
+  font-size: inherit;
+  border: 1px solid transparent;
+}
+
+.search input:focus {
+  box-shadow: 0 0 5px var(--theme-color, #42b983);
+  border: 1px solid var(--theme-color, #42b983);
+}
+
+.search input::-webkit-search-decoration,
+.search input::-webkit-search-cancel-button,
+.search input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.search input::-ms-clear {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.search .clear-button {
+  cursor: pointer;
+  width: 36px;
+  text-align: right;
+  display: none;
+}
+
+.search .clear-button.show {
+  display: block;
+}
+
+.search .clear-button svg {
+  transform: scale(.5);
+}
+
+.search h2 {
+  font-size: 17px;
+  margin: 10px 0;
+}
+
+.search a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.search .matching-post {
+  border-bottom: 1px solid #eee;
+}
+
+.search .matching-post:last-child {
+  border-bottom: 0;
+}
+
+.search p {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.search p.empty {
+  text-align: center;
+}
+
+.app-name.hide, .sidebar-nav.hide {
+  display: none;
+}</style><style></style><style></style><style></style><style></style></head>
+
+<body data-platform="Win32" class="ready sticky ready-fix vsc-initialized" data-page="colab.md" data-new-gr-c-s-check-loaded="14.1239.0" data-gr-ext-installed="">
+  <main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><div class="search"><div class="input-wrap">
+      <input type="search" value="" aria-label="Search text" placeholder="Type to search">
+      <button class="clear-button" aria-label="Clear search">
+                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="8" fill="black"></circle>
+                    <path stroke="white" stroke-width="1.5" d="M4.5,4.5,11.5,11.5" vector-effect="non-scaling-stroke"></path>
+                    <path stroke="white" stroke-width="1.5" d="M4.5,11.5,11.5,4.5" vector-effect="non-scaling-stroke"></path>
+                </svg>
+            </button>
+    </div>
+    <div class="results-panel"></div>
+    </div><h1 class="app-name"><a class="app-name-link" data-nosearch="" href="https://tds.s-anand.net/">Tools in Data Science</a></h1><div class="sidebar-nav"><ul><li class="file"><a href="https://tds.s-anand.net/#/README" title="Tools in Data Science">Tools in Data Science</a></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/development-tools" title="1. Development Tools">1. Development Tools</a><ul><li class="file"><a href="https://tds.s-anand.net/#/vscode" title="Editor: VS Code">Editor: VS Code</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-copilot" title="AI Code Editors: GitHub Copilot">AI Code Editors: GitHub Copilot</a></li><li class="file"><a href="https://tds.s-anand.net/#/uv" title="Python tools: uv">Python tools: uv</a></li><li class="file"><a href="https://tds.s-anand.net/#/npx" title="JavaScript tools: npx">JavaScript tools: npx</a></li><li class="file"><a href="https://tds.s-anand.net/#/unicode" title="Unicode">Unicode</a></li><li class="file"><a href="https://tds.s-anand.net/#/devtools" title="Browser: DevTools">Browser: DevTools</a></li><li class="file"><a href="https://tds.s-anand.net/#/css-selectors" title="CSS Selectors">CSS Selectors</a></li><li class="file"><a href="https://tds.s-anand.net/#/json" title="JSON">JSON</a></li><li class="file"><a href="https://tds.s-anand.net/#/bash" title="Terminal: Bash">Terminal: Bash</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm" title="AI Terminal Tools: llm">AI Terminal Tools: llm</a></li><li class="file"><a href="https://tds.s-anand.net/#/spreadsheets" title="Spreadsheet: Excel, Google Sheets">Spreadsheet: Excel, Google Sheets</a></li><li class="file"><a href="https://tds.s-anand.net/#/sqlite" title="Database: SQLite">Database: SQLite</a></li><li class="file"><a href="https://tds.s-anand.net/#/git" title="Version Control: Git, GitHub">Version Control: Git, GitHub</a></li></ul></li><li class="open folder level-1"><a href="https://tds.s-anand.net/#/deployment-tools" title="2. Deployment Tools">2. Deployment Tools</a><ul><li class="file"><a href="https://tds.s-anand.net/#/markdown" title="Markdown">Markdown</a></li><li class="file"><a href="https://tds.s-anand.net/#/image-compression" title="Images: Compression">Images: Compression</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-pages" title="Static hosting: GitHub Pages">Static hosting: GitHub Pages</a></li><li class="active open file"><a href="https://tds.s-anand.net/#/colab" title="Notebooks: Google Colab">Notebooks: Google Colab</a><ul class="app-sub-sidebar"><li class="file"><a class="section-link" href="https://tds.s-anand.net/#/colab?id=notebooks-google-colab" title="Notebooks: Google Colab">Notebooks: Google Colab</a></li></ul></li><li class="file"><a href="https://tds.s-anand.net/#/vercel" title="Serverless hosting: Vercel">Serverless hosting: Vercel</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-actions" title="CI/CD: GitHub Actions">CI/CD: GitHub Actions</a></li><li class="file"><a href="https://tds.s-anand.net/#/docker" title="Containers: Docker, Podman">Containers: Docker, Podman</a></li><li class="file"><a href="https://tds.s-anand.net/#/github-codespaces" title="DevContainers: GitHub Codespaces">DevContainers: GitHub Codespaces</a></li><li class="file"><a href="https://tds.s-anand.net/#/ngrok" title="Tunneling: ngrok">Tunneling: ngrok</a></li><li class="file"><a href="https://tds.s-anand.net/#/cors" title="CORS">CORS</a></li><li class="file"><a href="https://tds.s-anand.net/#/rest-apis" title="REST APIs">REST APIs</a></li><li class="file"><a href="https://tds.s-anand.net/#/fastapi" title="Web Framework: FastAPI">Web Framework: FastAPI</a></li><li class="file"><a href="https://tds.s-anand.net/#/google-auth" title="Authentication: Google Auth">Authentication: Google Auth</a></li><li class="file"><a href="https://tds.s-anand.net/#/ollama" title="Local LLMs: Ollama">Local LLMs: Ollama</a></li></ul></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/large-language-models" title="3. Large Language Models">3. Large Language Models</a><ul><li class="file"><a href="https://tds.s-anand.net/#/prompt-engineering" title="Prompt engineering">Prompt engineering</a></li><li class="file"><a href="https://tds.s-anand.net/#/tds-ta-instructions" title="TDS TA Instructions">TDS TA Instructions</a></li><li class="file"><a href="https://tds.s-anand.net/#/tds-gpt-reviewer" title="TDS GPT Reviewer">TDS GPT Reviewer</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-sentiment-analysis" title="LLM Sentiment Analysis">LLM Sentiment Analysis</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-text-extraction" title="LLM Text Extraction">LLM Text Extraction</a></li><li class="file"><a href="https://tds.s-anand.net/#/base64-encoding" title="Base 64 Encoding">Base 64 Encoding</a></li><li class="file"><a href="https://tds.s-anand.net/#/vision-models" title="Vision Models">Vision Models</a></li><li class="file"><a href="https://tds.s-anand.net/#/embeddings" title="Embeddings">Embeddings</a></li><li class="file"><a href="https://tds.s-anand.net/#/multimodal-embeddings" title="Multimodal Embeddings">Multimodal Embeddings</a></li><li class="file"><a href="https://tds.s-anand.net/#/topic-modeling" title="Topic modeling">Topic modeling</a></li><li class="file"><a href="https://tds.s-anand.net/#/vector-databases" title="Vector databases">Vector databases</a></li><li class="file"><a href="https://tds.s-anand.net/#/rag-cli" title="RAG with the CLI)">RAG with the CLI)</a></li><li class="file"><a href="https://tds.s-anand.net/#/hybrid-rag-typesense" title="Hybrid RAG with TypeSense">Hybrid RAG with TypeSense</a></li><li class="file"><a href="https://tds.s-anand.net/#/function-calling" title="Function Calling">Function Calling</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-agents" title="LLM Agents">LLM Agents</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-image-generation" title="LLM Image Generation">LLM Image Generation</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-speech" title="LLM Speech">LLM Speech</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-evals" title="LLM Evals">LLM Evals</a></li></ul></li><li class="file"><a href="https://tds.s-anand.net/#/project-tds-virtual-ta" title="Project 1">Project 1</a></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-sourcing" title="4. Data Sourcing">4. Data Sourcing</a><ul><li class="file"><a href="https://tds.s-anand.net/#/scraping-with-excel" title="Scraping with Excel">Scraping with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-with-google-sheets" title="Scraping with Google Sheets">Scraping with Google Sheets</a></li><li class="file"><a href="https://tds.s-anand.net/#/crawling-cli" title="Crawling with the CLI">Crawling with the CLI</a></li><li class="file"><a href="https://tds.s-anand.net/#/bbc-weather-api-with-python" title="BBC Weather API with Python">BBC Weather API with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-imdb-with-javascript" title="Scraping IMDb with JavaScript">Scraping IMDb with JavaScript</a></li><li class="file"><a href="https://tds.s-anand.net/#/nominatim-api-with-python" title="Nominatim API with Python">Nominatim API with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/wikipedia-data-with-python" title="Wikipedia Data with Python">Wikipedia Data with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-pdfs-with-tabula" title="Scraping PDFs with Tabula">Scraping PDFs with Tabula</a></li><li class="file"><a href="https://tds.s-anand.net/#/convert-pdfs-to-markdown" title="Convert PDFs to Markdown">Convert PDFs to Markdown</a></li><li class="file"><a href="https://tds.s-anand.net/#/convert-html-to-markdown" title="Convert HTML to Markdown">Convert HTML to Markdown</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-website-scraping" title="LLM Website Scraping">LLM Website Scraping</a></li><li class="file"><a href="https://tds.s-anand.net/#/llm-video-screen-scraping" title="LLM Video Screen-Scraping">LLM Video Screen-Scraping</a></li><li class="file"><a href="https://tds.s-anand.net/#/web-automation-with-playwright" title="Web Automation with Playwright">Web Automation with Playwright</a></li><li class="file"><a href="https://tds.s-anand.net/#/scheduled-scraping-with-github-actions" title="Scheduled Scraping with GitHub Actions">Scheduled Scraping with GitHub Actions</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-emarketer" title="Scraping emarketer.com">Scraping emarketer.com</a></li><li class="file"><a href="https://tds.s-anand.net/#/scraping-live-sessions" title="Scraping: Live Sessions">Scraping: Live Sessions</a></li></ul></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-preparation" title="5. Data Preparation">5. Data Preparation</a><ul><li class="file"><a href="https://tds.s-anand.net/#/data-cleansing-in-excel" title="Data Cleansing in Excel">Data Cleansing in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-transformation-in-excel" title="Data Transformation in Excel">Data Transformation in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/splitting-text-in-excel" title="Splitting Text in Excel">Splitting Text in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-aggregation-in-excel" title="Data Aggregation in Excel">Data Aggregation in Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-preparation-in-the-shell" title="Data Preparation in the Shell">Data Preparation in the Shell</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-preparation-in-the-editor" title="Data Preparation in the Editor">Data Preparation in the Editor</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-preparation-in-duckdb" title="Data Preparation in DuckDB">Data Preparation in DuckDB</a></li><li class="file"><a href="https://tds.s-anand.net/#/cleaning-data-with-openrefine" title="Cleaning Data with OpenRefine">Cleaning Data with OpenRefine</a></li><li class="file"><a href="https://tds.s-anand.net/#/parsing-json" title="Parsing JSON">Parsing JSON</a></li><li class="file"><a href="https://tds.s-anand.net/#/dbt" title="Data Transformation with dbt">Data Transformation with dbt</a></li><li class="file"><a href="https://tds.s-anand.net/#/transforming-images" title="Transforming Images">Transforming Images</a></li><li class="file"><a href="https://tds.s-anand.net/#/extracting-audio-and-transcripts" title="Extracting Audio and Transcripts">Extracting Audio and Transcripts</a><!-- #TODO Stitching together podcasts from snippets using SoX? --></li></ul></li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-analysis" title="6. Data Analysis">6. Data Analysis</a><ul><li class="file"><a href="https://tds.s-anand.net/#/correlation-with-excel" title="Correlation with Excel">Correlation with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/regression-with-excel" title="Regression with Excel">Regression with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/forecasting-with-excel" title="Forecasting with Excel">Forecasting with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/outlier-detection-with-excel" title="Outlier Detection with Excel">Outlier Detection with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-python" title="Data Analysis with Python">Data Analysis with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-sql" title="Data Analysis with SQL">Data Analysis with SQL</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-datasette" title="Data Analysis with Datasette">Data Analysis with Datasette</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-duckdb" title="Data Analysis with DuckDB">Data Analysis with DuckDB</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-analysis-with-chatgpt" title="Data Analysis with ChatGPT">Data Analysis with ChatGPT</a></li><li class="file"><a href="https://tds.s-anand.net/#/geospatial-analysis-with-excel" title="Geospatial Analysis with Excel">Geospatial Analysis with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/geospatial-analysis-with-python" title="Geospatial Analysis with Python">Geospatial Analysis with Python</a></li><li class="file"><a href="https://tds.s-anand.net/#/geospatial-analysis-with-qgis" title="Geospatial Analysis with QGIS">Geospatial Analysis with QGIS</a></li><li class="file"><a href="https://tds.s-anand.net/#/network-analysis-in-python" title="Network Analysis in Python">Network Analysis in Python</a></li></ul></li><li class="file">Project 2</li><li class="folder level-1"><a href="https://tds.s-anand.net/#/data-visualization" title="7. Data Visualization">7. Data Visualization</a><ul><li class="file"><a href="https://tds.s-anand.net/#/visualizing-forecasts-with-excel" title="Visualizing Forecasts with Excel">Visualizing Forecasts with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-animated-data-with-powerpoint" title="Visualizing Animated Data with PowerPoint">Visualizing Animated Data with PowerPoint</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-animated-data-with-flourish" title="Visualizing Animated Data with Flourish">Visualizing Animated Data with Flourish</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-network-data-with-kumu" title="Visualizing Network Data with Kumu">Visualizing Network Data with Kumu</a></li><li class="file"><a href="https://tds.s-anand.net/#/visualizing-charts-with-excel" title="Visualizing Charts with Excel">Visualizing Charts with Excel</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-visualization-with-seaborn" title="Data Visualization with Seaborn">Data Visualization with Seaborn</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-visualization-with-chatgpt" title="Data Visualization with ChatGPT">Data Visualization with ChatGPT</a></li><li class="file"><a href="https://tds.s-anand.net/#/actor-network-visualization" title="Actor Network Visualization">Actor Network Visualization</a></li><li class="file"><a href="https://tds.s-anand.net/#/rawgraphs" title="RAWgraphs">RAWgraphs</a></li><li class="file"><a href="https://tds.s-anand.net/#/data-storytelling" title="Data Storytelling">Data Storytelling</a></li><li class="file"><a href="https://tds.s-anand.net/#/narratives-with-llms" title="Narratives with LLMs">Narratives with LLMs</a></li><li class="file"><a href="https://tds.s-anand.net/#/marimo" title="Interactive Notebooks: Marimo">Interactive Notebooks: Marimo</a></li><li class="file"><a href="https://tds.s-anand.net/#/revealjs" title="HTML Slides: RevealJS">HTML Slides: RevealJS</a></li><li class="file"><a href="https://tds.s-anand.net/#/marp" title="Markdown Presentations: Marp">Markdown Presentations: Marp</a></li></ul></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><h2 id="notebooks-google-colab"><a href="https://tds.s-anand.net/#/colab?id=notebooks-google-colab" data-id="notebooks-google-colab" class="anchor"><span>Notebooks: Google Colab</span></a></h2><p><a href="https://colab.research.google.com/" target="_blank" rel="noopener">Google Colab</a> is a free, cloud-based Jupyter notebook environment that’s become indispensable for data scientists and ML practitioners. It’s particularly valuable because it provides free access to GPUs and TPUs, and for easy sharing of code and execution results.</p><p>While Colab is excellent for prototyping and learning, its free tier has limitations - notebooks time out after 12 hours, and GPU access can be inconsistent.</p><p>Learn how to mount Google Drive for persistent storage, manage dependencies with <code>!pip install</code> commands, as these are common pain points when getting started.</p><p><a href="https://youtu.be/inN8seMm7UI" target="_blank" rel="noopener"><img src="./Notebooks_ Google Colab_files/sddefault.webp" data-origin="https://i.ytimg.com/vi_webp/inN8seMm7UI/sddefault.webp" alt="Get started with Google Colaboratory (3 min)"></a></p><ul><li><a href="https://youtu.be/rNgswRZ2C1Y" target="_blank" rel="noopener">Google Colab features you may have missed</a></li><li><a href="https://youtu.be/8HvugBq5NKg" target="_blank" rel="noopener">How to mount Google Drive to Google Colab</a></li><li><a href="https://youtu.be/tCYSce6l8gA" target="_blank" rel="noopener">How to take advantage of GPUs and TPUs for your ML project</a></li></ul><div class="docsify-pagination-container">
+        <div class="pagination-item pagination-item--previous">
+          <a href="https://tds.s-anand.net/#/github-pages">
+            <div class="pagination-item-label">
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="8,2 2,8 8,14"></polyline>
+              </svg>
+              <span>Previous</span>
+            </div>
+            <div class="pagination-item-title">Static hosting: GitHub Pages</div>
+      <div class="pagination-item-subtitle"></div></a>
+        </div>
+      
+        <div class="pagination-item pagination-item--next">
+          <a href="https://tds.s-anand.net/#/vercel">
+            <div class="pagination-item-label">
+              <span>Next</span>
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="2,2 8,8 2,14"></polyline>
+              </svg>
+            </div>
+            <div class="pagination-item-title">Serverless hosting: Vercel</div>
+      <div class="pagination-item-subtitle"></div></a>
+        </div>
+      </div></article></section></main>
+  <script>
+    window.$docsify = {
+      name: 'Tools in Data Science',
+      subMaxLevel: 2,
+      themeColor: '#dc3545',
+      loadSidebar: true,
+      sidebarDisplayLevel: 0,
+      pagination: {
+        previousText: 'Previous',
+        nextText: 'Next',
+        crossChapter: true,
+        crossChapterText: true
+      },
+    };
+
+  </script>
+  <script src="./Notebooks_ Google Colab_files/docsify@4"></script>
+  <script src="./Notebooks_ Google Colab_files/search.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/zoom-image.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/docsify-pagination.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/docsify-themeable.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/docsify-copy-code.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/docsify-sidebar-collapse.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/prism-bash.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/prism-python.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/prism-sql.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/prism-yaml.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/prism-json.min.js.download"></script>
+  <script src="./Notebooks_ Google Colab_files/prism-markdown.min.js.download"></script>
+
+
+
+<div class="progress" style="opacity: 0; width: 0%;"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
