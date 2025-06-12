@@ -1,7 +1,7 @@
 import json
 from sentence_transformers import SentenceTransformer, util
 import openai
-import os
+import torch
 
 openai.api_base = "https://aipipe.org/openai/v1"
 openai.api_key = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjIzZjMwMDE4OTdAZHMuc3R1ZHkuaWl0bS5hYy5pbiJ9.0K_02nynzpAb1c66nTBI6Rt8CMLWBpi8gLrYam3qvAU"  # <- paste your actual token here
@@ -34,10 +34,17 @@ for post in forum_data:
         "created_at": post["created_at"]
     })
 
-doc_embeddings = model.encode(documents, convert_to_tensor=True)
+doc_embeddings = None  # lazy load only when needed
+
+def load_embeddings():
+    global doc_embeddings
+    if doc_embeddings is None:
+        print("Loading embeddings...")
+        doc_embeddings = model.encode(documents, convert_to_tensor=True)
 
 # Find relevant context
 def find_top_k_contexts(query, k=5):
+    load_embeddings()
     query_embedding = model.encode(query, convert_to_tensor=True)
     hits = util.semantic_search(query_embedding, doc_embeddings, top_k=k)[0]
     context = []
