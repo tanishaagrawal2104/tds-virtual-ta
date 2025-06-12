@@ -1,20 +1,24 @@
 import json
-from sentence_transformers import SentenceTransformer, util
-import openai
 import os
+import openai
+import numpy as np
 
+# 🔐 AIPipe setup
+openai.api_key = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjIzZjMwMDE4OTdAZHMuc3R1ZHkuaWl0bS5hYy5pbiJ9.0K_02nynzpAb1c66nTBI6Rt8CMLWBpi8gLrYam3qvAU"  # You can also paste token directly for testing
 openai.api_base = "https://aipipe.org/openai/v1"
-openai.api_key = os.getenv("AIPIPE_TOKEN")  # or paste directly for now
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
-doc_embeddings = None
 documents = []
 sources = []
+embeddings = []
+
+def cosine_similarity(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 def load_data():
     global documents, sources
     if documents:
         return  # already loaded
+
     with open("data/course.json", encoding="utf-8") as f:
         course_data = json.load(f)
     with open("data/discourse.json", encoding="utf-8") as f:
@@ -34,44 +38,66 @@ def load_data():
         })
 
 def load_embeddings():
-    global doc_embeddings
-    if doc_embeddings is None:
-        load_data()
-        doc_embeddings = model.encode(documents, convert_to_tensor=True)
+    global embeddings
+    if embeddings:
+        return
+
+    load_data()
+    print("🔁 Generating embeddings via AIPipe...")
+
+    for doc in documents:
+        try:
+            res = openai.Embedding.create(
+                model="text-embedding-3-small",
+                input=doc
+            )
+            emb = np.array(res["data"][0]["embedding"])
+            embeddings.append(emb)
+        except Exception as e:
+            print("⚠️ Embedding error:", e)
+            embeddings.append(np.zeros(512))  # fallback
 
 def find_top_k_contexts(query, k=5):
     load_embeddings()
-    query_embedding = model.encode(query, convert_to_tensor=True)
-    hits = util.semantic_search(query_embedding, doc_embeddings, top_k=k)[0]
-    context = []
-    refs = []
-    for hit in hits:
-        idx = hit["corpus_id"]
-        context.append(documents[idx])
-        refs.append(sources[idx])
-    return context, refs
+    query_embedding = openai.Embedding.create(
+        model="text-embedding-3-small",
+        input=query
+    )["data"][0]["embedding"]
+    query_embedding = np.array(query_embedding)
+
+    scored = []
+    for i, emb in enumerate(embeddings):
+        sim = cosine_similarity(query_embedding, emb)
+        scored.append((sim, i))
+
+    top_hits = sorted(scored, reverse=True)[:k]
+
+    contexts = [documents[i] for _, i in top_hits]
+    refs = [sources[i] for _, i in top_hits]
+    return contexts, refs
 
 def generate_answer(question):
     context, refs = find_top_k_contexts(question)
     context_text = "\n\n".join(context)
-    prompt = f"""You are a virtual TA. A student asked:
+
+    prompt = f"""You are a helpful virtual TA. A student asked:
 
 Question: {question}
 
-Relevant context:
+Relevant information:
 {context_text}
 
-Give a helpful answer and cite forum links if relevant.
+Give a clear and helpful answer. Include forum links if available.
 Answer:"""
 
-    response = openai.ChatCompletion.create(
-        model="openai/gpt-3.5-turbo",
+    res = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.3
+        temperature=0.2
     )
 
-    answer = response['choices'][0]['message']['content']
-    
+    answer = res["choices"][0]["message"]["content"]
+
     links = []
     for ref in refs:
         if ref["type"] == "forum":
